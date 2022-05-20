@@ -3,25 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {configstore} from 'redux';
-import { Provider } from 'react-redux';
+// import {configstore} from 'redux';
+// import { Provider } from 'react-redux';
 
-const reducer = (state = {}, action) =>{
-  switch(action.type){
+// const reducer = (state = {}, action) =>{
+//   switch(action.type){
 
-    default:
-      return state;
-  }
-}
+//     default:
+//       return state;
+//   }
+// }
 
-const store = configstore(reducer)
+// const store = configstore(reducer)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    {/* <Provider store={store}> */}
       <App />
-    </Provider>
+    {/* </Provider> */}
   </React.StrictMode>
 );
 

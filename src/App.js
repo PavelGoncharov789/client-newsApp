@@ -1,13 +1,12 @@
+// import {useDispatch,useSelector} from 'react-redux';
+import { AllNews } from './components/allNews/AllNews';
 import './App.css';
-import {useDispatch,useSelector} from 'react-redux';
 
 function App() {
-  const dispatch = useDispatch()
-  const stateValue = useSelector(state => state)
+  // const dispatch = useDispatch()
+  // const stateValue = useSelector(state => state)
   return (
-    <div>
-      <h1>Текст</h1>
-    </div>
+    <AllNews/>
   );
 }
 
