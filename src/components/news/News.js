@@ -1,9 +1,10 @@
 import React from "react";
+import "./style.css"
 
 export const News = ({ element }) => {
 
   return (
-    <div>
+    <div className="news">
       <h1>{element.title}</h1>
       {console.log(element.title)}
       {/* <img></img> */}
