@@ -2,14 +2,18 @@
 import { AllNews } from './components/allNews/AllNews';
 import './App.css';
 import { Header } from './components/header/Header';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 function App() {
   // const dispatch = useDispatch()
   // const stateValue = useSelector(state => state)
-  return (<div>
-    <Header/>
-    <AllNews/>
-  </div>
+  return (
+    <Provider store={store}>
+      <Header/>
+      <AllNews/>
+    </Provider>
   );
 }
 
