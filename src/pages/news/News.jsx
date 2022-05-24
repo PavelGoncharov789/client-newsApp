@@ -1,12 +1,11 @@
-import React from "react";
-import "./style.css"
+import React from 'react';
+import './style.css'
 
 export const News = ({ element }) => {
 
   return (
-    <div className="news">
-      <h1>{element.title}</h1>
-      {console.log(element.title)}
+    <div className='news'>
+      <h1>{element.title}</h1> 
       {/* <img></img> */}
       <p>{element.text}</p>
       <p>{element.author}</p>

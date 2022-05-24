@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { News } from "../news/News";
-import "./AllNews.css"
-import {getNewsAction} from "../../store/actions";
+import { News } from '../news/News';
+import './styles.css';
+import {getNewsAction} from '../../store/actions';
 
 export const AllNews = () => {
   const dispatch = useDispatch();
@@ -16,7 +15,7 @@ export const AllNews = () => {
 
 
   return (
-    <div className="allNews">
+    <div className='allNews'>
       {isLoading?'loading':allNews.map((element, index) => <News element={element} key={index} />
       )}
     </div>
