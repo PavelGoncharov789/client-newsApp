@@ -2,8 +2,6 @@ import { all, call } from 'redux-saga/effects';
 
 import newsWatcher from './news-saga';
 
-const rootSaga = function* () {
+export default function* rootSaga() {
   yield all([call(newsWatcher)]);
-};
-
-export default rootSaga;
+}
