@@ -14,10 +14,9 @@ import {
 const getNewsWorker = function* () {
   let data;
   try {
-
     data = yield call(adapter, {
       method: 'get',
-	  url: '/'
+	    url: '/'
     });
 
 	if(data.data) {

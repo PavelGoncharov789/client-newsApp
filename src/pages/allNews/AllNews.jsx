@@ -4,17 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import './styles.css';
 
 import { News } from '../news/NewsCard';
-import {getNewsAction} from '../../store/actions';
+import { getNewsAction } from '../../store/actions';
 
 export const AllNews = () => {
   const dispatch = useDispatch();
   const allNews = useSelector((state) => state.newsReducer.newsList);
   const isLoading = useSelector((state) => state.newsReducer.loading);
-useEffect(() => {console.log('allNews', allNews)}, [allNews]);
+
   useEffect(() => {
       dispatch(getNewsAction());
   }, []);
-
 
   return (
     <div className='allNews'>
