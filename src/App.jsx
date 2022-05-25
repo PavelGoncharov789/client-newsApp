@@ -1,13 +1,13 @@
-import { AllNews } from './pages/allNews/AllNews';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import { Router } from 'react-router';
-import './App.css'; 
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux';
 
+import { AllNews } from './pages/allNews/AllNews';
+
 import store from './store';
+import './App.css'; 
 
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
