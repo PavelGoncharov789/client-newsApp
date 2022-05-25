@@ -2,7 +2,7 @@ import {
   takeLatest,
   put,
   call,
-  cancel
+  cancel,
 } from 'redux-saga/effects';
 
 import adapter from '../../api/adapter';
@@ -12,25 +12,23 @@ import {
   getNewsFailAction,
 } from '../actions';
 
-const getNewsWorker = function* () {
+function* getNewsWorker() {
   try {
     const data = yield call(adapter, {
       method: 'get',
-	    url: '/'
+      url: '/news',
     });
 
-    if(data.data) {
+    if (data.data) {
       yield put(getNewsSuccessAction(data.data));
-    } else{
+    } else {
       yield cancel('Can\'n get news');
     }
   } catch (e) {
     yield put(getNewsFailAction(e.message));
   }
-};
+}
 
-const newsWatcher = function* () {
+export default function* newsWatcher() {
   yield takeLatest(actionTypes.GET_NEWS, getNewsWorker);
-};
-
-export default newsWatcher;
+}
