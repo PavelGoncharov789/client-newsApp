@@ -18,7 +18,11 @@ export const AllNews = () => {
   return (
     <div className='allNews'>
       {isLoading&&'loading'}
-      {allNews.length > 0 && allNews.map((element, index) => (<News element={element} key={index} />))}
+      {
+      !isLoading
+      && allNews.length > 0
+      && allNews.map((element) => (<News element={element} key={element.id} />))
+      }
     </div>
   );
 };
