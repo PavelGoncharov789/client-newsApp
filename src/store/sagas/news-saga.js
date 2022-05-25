@@ -13,9 +13,8 @@ import {
 } from '../actions';
 
 const getNewsWorker = function* () {
-  let data;
   try {
-    data = yield call(adapter, {
+    const data = yield call(adapter, {
       method: 'get',
 	    url: '/'
     });

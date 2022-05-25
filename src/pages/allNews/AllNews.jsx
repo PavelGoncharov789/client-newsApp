@@ -16,7 +16,7 @@ export const AllNews = () => {
   }, []);
 
   return (
-    <div className='allNews'>
+    <div className="allNews">
       {isLoading&&'loading'}
       {
       !isLoading
