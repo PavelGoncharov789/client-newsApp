@@ -5,7 +5,7 @@ import './style.css';
 export const News = ({ element }) => {
 
   return (
-    <div className='news'>
+    <div className="news">
       <h1>{element.title}</h1> 
       <p>{element.text}</p>
       <p>{element.author}</p>
