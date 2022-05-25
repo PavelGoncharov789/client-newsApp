@@ -15,12 +15,11 @@ const getNewsWorker = function* () {
   let data;
   try {
 
-console.log('process.env.REACT_APP_BASE_URL', process.env.REACT_APP_BASE_URL);
     data = yield call(adapter, {
       method: 'get',
 	  url: '/'
     });
-console.log('data', data)
+
 	if(data.data) {
 		yield put(getNewsSuccessAction(data.data));
 	} else{
