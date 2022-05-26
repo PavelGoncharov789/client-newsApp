@@ -1,0 +1,12 @@
+.registr{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    margin: auto;
+}
+
+.button{
+    width: 150px;
+    margin-top: 25px !important;
+}

@@ -6,18 +6,18 @@ import './styles.css';
 import { News } from '../news/NewsCard';
 import { getNewsAction } from '../../store/actions';
 
-export const AllNews = () => {
+export default function AllNews() {
   const dispatch = useDispatch();
   const allNews = useSelector((state) => state.newsReducer.newsList);
   const isLoading = useSelector((state) => state.newsReducer.loading);
 
   useEffect(() => {
-      dispatch(getNewsAction());
+    dispatch(getNewsAction());
   }, []);
 
   return (
     <div className="allNews">
-      {isLoading&&'loading'}
+      {isLoading && 'loading'}
       {
       !isLoading
       && allNews.length > 0
@@ -25,4 +25,4 @@ export const AllNews = () => {
       }
     </div>
   );
-};
+}

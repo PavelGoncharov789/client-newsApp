@@ -1,20 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { AllNews } from './pages/allNews/AllNews';
-import { Registration } from './pages/registration/Registation';
+import AllNews from './pages/allNews/AllNews';
 
-import './App.css'; 
+import Registration from './pages/registration/Registation';
 
-const App = () => {
+import './App.css';
+
+function App() {
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<AllNews/>}/>
-          <Route path="/registration" element={<Registration/>}/>
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AllNews />} />
+        <Route path="/registration" element={<Registration />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
