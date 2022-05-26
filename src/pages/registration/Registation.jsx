@@ -2,12 +2,16 @@ import React from 'react';
 import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
 
-import { Header } from '../../components/header/Header';
+import Header from '../../components/header/Header';
+import { addUserAction } from '../../store/actions';
 
 import './style.css';
 
 function Registration() {
+  const dispatch = useDispatch();
+
   const validationSchema = Yup.object({
     firstName: Yup.string()
       .min(2, 'Password should be of minimum 2 characters length')
@@ -45,6 +49,7 @@ function Registration() {
     },
     validationSchema,
     onSubmit: (values) => {
+      dispatch(addUserAction({ values }));
       console.log(JSON.stringify(values, null, 2));
       alert(1);
     },

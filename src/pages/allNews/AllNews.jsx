@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './styles.css';
 
-import { News } from '../news/NewsCard';
+import NewsCard from '../news/NewsCard';
 import { getNewsAction } from '../../store/actions';
 
 export default function AllNews() {
@@ -21,7 +21,7 @@ export default function AllNews() {
       {
       !isLoading
       && allNews.length > 0
-      && allNews.map((element) => (<News element={element} key={element.id} />))
+      && allNews.map((element) => (<NewsCard element={element} key={element.id} />))
       }
     </div>
   );
