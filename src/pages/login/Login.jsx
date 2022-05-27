@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 
 import Header from '../../components/header/Header';
-import { addUserAction } from '../../store/actions';
+import { logInUserAction } from '../../store/actions';
 
 import './style.css';
 
@@ -31,9 +31,7 @@ function Login() {
     },
     validationSchema,
     onSubmit: (values) => {
-      dispatch(addUserAction(values));
-      console.log(JSON.stringify(values, null, 2));
-      alert(1);
+      dispatch(logInUserAction(values));
     },
   });
 

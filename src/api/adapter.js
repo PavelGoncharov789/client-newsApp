@@ -4,4 +4,6 @@ const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
 });
 
+instance.defaults.headers.common.Authorization = localStorage.getItem('STORAGEUSER');
+
 export default instance;
