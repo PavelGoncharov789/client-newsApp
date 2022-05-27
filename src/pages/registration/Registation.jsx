@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -16,7 +17,6 @@ function Registration() {
     firstName: Yup.string()
       .min(2, 'Password should be of minimum 2 characters length')
       .max(12, 'Password should be of maximum 12 characters length')
-      // .typeError('Должна быть строка')
       .required('Обязательное поле'),
     lastName: Yup.string()
       .min(2, 'Password should be of minimum 2 characters length')
@@ -35,6 +35,7 @@ function Registration() {
       .min(6, 'Password should be of minimum 6 characters length')
       .max(12, 'Password should be of maximum 12 characters length')
       .matches(/^\S+[a-zA-Z0-9]$/, 'Password can only contain Latin letters.')
+      .oneOf([Yup.ref('password')], 'Пароли не совпадают')
       .required('Обязательное поле'),
     email: Yup.string().email('Invalid email').required('Required'),
   });
@@ -49,9 +50,7 @@ function Registration() {
     },
     validationSchema,
     onSubmit: (values) => {
-      dispatch(addUserAction({ values }));
-      console.log(JSON.stringify(values, null, 2));
-      alert(1);
+      dispatch(addUserAction(values));
     },
   });
 
@@ -60,30 +59,6 @@ function Registration() {
       <Header />
       <form onSubmit={formik.handleSubmit}>
         <div className="registr">
-          <TextField
-            id="outlined-basic"
-            label="Name"
-            variant="outlined"
-            margin="dense"
-            name="firstName"
-            value={formik.values.firstName}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={!!(formik.touched.firstName && formik.errors.firstName)}
-            helperText={formik.touched.firstName && formik.errors.firstName}
-          />
-          <TextField
-            id="outlined-basic"
-            label="lastName"
-            variant="outlined"
-            margin="dense"
-            name="lastName"
-            value={formik.values.lastName}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={!!(formik.touched.lastName && formik.errors.lastName)}
-            helperText={formik.touched.lastName && formik.errors.lastName}
-          />
           <TextField
             id="outlined-basic"
             label="login"
@@ -98,7 +73,31 @@ function Registration() {
           />
           <TextField
             id="outlined-basic"
-            label="password"
+            label="Name"
+            variant="outlined"
+            margin="dense"
+            name="firstName"
+            value={formik.values.firstName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={!!(formik.touched.firstName && formik.errors.firstName)}
+            helperText={formik.touched.firstName && formik.errors.firstName}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Last Name"
+            variant="outlined"
+            margin="dense"
+            name="lastName"
+            value={formik.values.lastName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={!!(formik.touched.lastName && formik.errors.lastName)}
+            helperText={formik.touched.lastName && formik.errors.lastName}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Password"
             variant="outlined"
             margin="dense"
             name="password"
@@ -111,7 +110,7 @@ function Registration() {
           />
           <TextField
             id="outlined-basic"
-            label="confirmPassword"
+            label="Repeat the password"
             variant="outlined"
             margin="dense"
             name="confirmPassword"
@@ -124,7 +123,7 @@ function Registration() {
           />
           <TextField
             id="outlined-basic"
-            label="email"
+            label="Email"
             variant="outlined"
             margin="dense"
             name="email"
@@ -135,13 +134,23 @@ function Registration() {
             error={!!(formik.touched.email && formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
           />
-          <Button
-            variant="outlined"
-            className="button"
-            type="submit"
-          >
-            Регистрация
-          </Button>
+          <div>
+            <Button
+              variant="outlined"
+              className="button"
+              type="submit"
+            >
+              Регистрация
+            </Button>
+            <Link to="/login" className="link">
+              <Button
+                variant="outlined"
+                className="button"
+              >
+                Вход
+              </Button>
+            </Link>
+          </div>
         </div>
       </form>
     </div>

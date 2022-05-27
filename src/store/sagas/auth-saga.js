@@ -7,31 +7,26 @@ import {
 
 import adapter from '../../api/adapter';
 import * as actionTypes from '../actionTypes';
-import {
-  getNewsSuccessAction,
-  getNewsFailAction,
-} from '../actions';
+import { signUpSuccessAction, signUpFailAction } from '../actions';
 
 function* signUp(action) {
-  console.log('action.saga', action);
-
   try {
     const data = yield call(adapter, {
       method: 'post',
-      url: '/auth',
-      headers:''
+      url: '/auth/signup',
+      data: action.payload,
     });
 
     if (data.data) {
-      yield put(getNewsSuccessAction(data.data));
+      yield put(signUpSuccessAction(data.data));
     } else {
-      yield cancel('Can\'n get news');
+      yield cancel('The user is not created');
     }
   } catch (e) {
-    yield put(getNewsFailAction(e.message));
+    yield put(signUpFailAction(e.message));
   }
 }
 
-export default function* newsWatcher() {
+export default function* authWatcher() {
   yield takeLatest(actionTypes.SIGN_UP_USER, signUp);
 }

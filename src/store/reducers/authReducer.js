@@ -9,7 +9,6 @@ const initialState = {
 export default function authReducer(state = initialState, action = {}) {
   switch (action.type) {
     case actionTypes.SIGN_UP_USER:
-      console.log(action)
       return {
         ...state,
         loading: true,
@@ -31,4 +30,4 @@ export default function authReducer(state = initialState, action = {}) {
       };
     default: return state;
   }
-}
+};

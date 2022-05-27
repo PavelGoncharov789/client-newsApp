@@ -9,4 +9,11 @@
 .button{
     width: 150px;
     margin-top: 25px !important;
+    margin-right: 50px !important;
 }
+
+.link{
+    text-decoration: none;
+  }
+
+
