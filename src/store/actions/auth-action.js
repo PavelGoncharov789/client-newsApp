@@ -14,8 +14,10 @@ export const logInSuccessAction = createAction(actionTypes.SIGN_IN_SUCCESS);
 
 export const logInFailAction = createAction(actionTypes.SIGN_IN_FAIL);
 
-export const  whoAmI = createAction(actionTypes.WHOAMI);
+export const whoAmI = createAction(actionTypes.WHOAMI);
 
 export const whoAmISuccess = createAction(actionTypes.WHOAMI_SUCCESS);
 
 export const whoAmFail = createAction(actionTypes.WHOAMI);
+
+export const logOut = createAction(actionTypes.LOGOUT);

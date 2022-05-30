@@ -19,7 +19,6 @@ export default function authReducer(state = initialState, action = {}) {
       return {
         ...state,
         loadingSingUp: false,
-        user: action.payload,
         error: null,
       };
     case actionTypes.SIGN_UP_FAIL:
@@ -68,6 +67,13 @@ export default function authReducer(state = initialState, action = {}) {
         loadingSingIn: false,
         user: null,
         error: action.payload,
+      };
+    case actionTypes.LOGOUT:
+      return {
+        ...state,
+        loadingSingIn: false,
+        user: null,
+        error: null,
       };
     default: return state;
   }

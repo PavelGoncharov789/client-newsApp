@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import AllNews from './pages/allNews/AllNews';
@@ -8,17 +9,18 @@ import Login from './pages/login/Login';
 
 import './App.css';
 import UserPage from './pages/userPage/UserPage';
-import { useDispatch } from 'react-redux';
 import { whoAmI } from './store/actions';
 
 function App() {
   const token = localStorage.getItem('token');
-  console.log("TOKEN", token);
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(whoAmI())
-  }, [token])
+    console.log('token', token);
+    if (token) {
+      dispatch(whoAmI());
+    }
+  }, [dispatch, token]);
 
   return (
     <BrowserRouter>

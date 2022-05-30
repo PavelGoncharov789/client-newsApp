@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Header from '../../components/header/Header';
+
 import './styles.css';
 
 import NewsCard from '../news/NewsCard';
@@ -17,6 +19,7 @@ export default function AllNews() {
 
   return (
     <div className="allNews">
+      <Header />
       {isLoading && 'loading'}
       {
       !isLoading

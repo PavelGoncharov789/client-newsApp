@@ -2,4 +2,15 @@
     width: 100%;
     background-color: aquamarine;
     height: 100px;
+    display: flex;
+    padding: 0 200px;
+    align-items: center
+}
+
+button{
+    height: 25px;
+}
+
+.button-registration{
+    margin-right: 40px !important;
 }

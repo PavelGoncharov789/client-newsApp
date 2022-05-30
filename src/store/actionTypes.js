@@ -9,4 +9,5 @@ export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
 export const SIGN_IN_FAIL = 'SIGN_IN_FAIL';
 export const WHOAMI = 'WHOAMI';
 export const WHOAMI_SUCCESS = 'WHOAMI_SUCCESS';
-export const WHOAMI_FAIL = 'WHOAMI_FAIL'
+export const WHOAMI_FAIL = 'WHOAMI_FAIL';
+export const LOGOUT = 'LOGOUT';
