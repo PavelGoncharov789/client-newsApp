@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../../components/header/Header';
 import { logInUserAction } from '../../store/actions';
@@ -11,6 +11,7 @@ import { logInUserAction } from '../../store/actions';
 import './style.css';
 
 function Login() {
+  const authUser = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
 
   const validationSchema = Yup.object({
@@ -34,6 +35,10 @@ function Login() {
       dispatch(logInUserAction(values));
     },
   });
+
+  if (authUser?.id) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>
