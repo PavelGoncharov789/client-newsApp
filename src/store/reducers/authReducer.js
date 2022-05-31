@@ -71,9 +71,21 @@ export default function authReducer(state = initialState, action = {}) {
     case actionTypes.LOGOUT:
       return {
         ...state,
-        loadingSingIn: false,
+        loadingSingIn: true,
+        error: null,
+      };
+    case actionTypes.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        loadingSingIn: true,
         user: null,
         error: null,
+      };
+    case actionTypes.LOGOUT_FAIL:
+      return {
+        ...state,
+        loadingSingIn: false,
+        error: action.payload,
       };
     default: return state;
   }

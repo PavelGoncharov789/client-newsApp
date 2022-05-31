@@ -1,16 +1,17 @@
-.header{
-    width: 100%;
-    background-color: aquamarine;
-    height: 100px;
-    display: flex;
-    padding: 0 200px;
-    align-items: center
+.header {
+  width: 100%;
+  background-color: aquamarine;
+  height: 100px;
+  display: flex;
+  padding: 0 200px;
+  align-items: center;
 }
 
-button{
-    height: 25px;
+button.button-registration {
+  margin-right: 40px;
+  height: 35px;
 }
 
-.button-registration{
-    margin-right: 40px !important;
+#link {
+  text-decoration: none;
 }

@@ -16,7 +16,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('token', token);
     if (token) {
       dispatch(whoAmI());
     }
