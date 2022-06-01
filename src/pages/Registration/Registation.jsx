@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
+
+import { Button, TextField } from '@mui/material';
 
 import Header from '../../components/Header/Header';
 import { addUserAction } from '../../store/actions';
