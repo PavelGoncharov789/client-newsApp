@@ -6,4 +6,3 @@ import authWatcher from './auth-saga';
 export default function* rootSaga() {
   yield all([call(newsWatcher), call(authWatcher)]);
 }
-

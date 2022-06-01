@@ -23,7 +23,7 @@ export const registrValidationSchema = Yup.object({
   password: passwordValidation,
   confirmPassword: passwordValidation
     .oneOf([Yup.ref('password')], 'Пароли не совпадают'),
-  email: Yup.string().email('Неверный адрес электронной почты').required('Поле не может быть пустым'),
+  email: Yup.string().email('Невалидный адрес электронной почты').required('Поле не может быть пустым'),
 });
 
 export const loginValidationSchema = Yup.object({

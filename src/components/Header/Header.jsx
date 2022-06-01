@@ -6,16 +6,23 @@ import { Button } from '@mui/material';
 
 import { logOut } from '../../store/actions';
 
+import { removeTokenFromLS } from '../../utils/tokenUtils';
+
 import './style.css';
 
 function Header() {
   const authUser = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
 
+  const logut = () => {
+    removeTokenFromLS();
+    dispatch(logOut());
+  };
+
   if (authUser?.id) {
     return (
       <div className="header">
-        <Button variant="outlined" onClick={() => dispatch(logOut())}>Выход</Button>
+        <Button variant="outlined" onClick={() => logut()}>Выход</Button>
       </div>
     );
   }

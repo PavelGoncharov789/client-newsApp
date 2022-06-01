@@ -44,7 +44,7 @@ function* signIn(action) {
       url: '/auth/login',
       data: action.payload,
     });
-    
+
     if (data) {
       const { token, user } = data;
       setTokenFromLS(token);
@@ -69,13 +69,8 @@ function* whoAmI() {
   }
 }
 
-function* logOut() {
-  localStorage.removeItem('token');
-}
-
 export default function* authWatcher() {
   yield takeLatest(actionTypes.SIGN_UP_USER, signUp);
   yield takeLatest(actionTypes.SIGN_IN_USER, signIn);
   yield takeLatest(actionTypes.WHOAMI, whoAmI);
-  yield takeLatest(actionTypes.LOGOUT, logOut);
 }
