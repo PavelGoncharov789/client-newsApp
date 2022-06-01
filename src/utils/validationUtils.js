@@ -7,8 +7,8 @@ const passwordValidation = Yup.string()
   .required('Поле не может быть пустым');
 
 const nameValidation = (label) => Yup.string()
-  .min(2, `${label} длина должна быть не менее 2 символов`)
-  .max(12, `${label} длина должна быть не более 12 символов`)
+  .min(2, `Длина ${label} должна быть не менее 2 символов`)
+  .max(12, `Длина ${label} должна быть не более 12 символов`)
   .required('Поле не может быть пустым');
 
 const loginValidation = Yup.string()
@@ -17,8 +17,8 @@ const loginValidation = Yup.string()
   .required('Поле не может быть пустым');
 
 export const registrValidationSchema = Yup.object({
-  firstName: nameValidation('Name'),
-  lastName: nameValidation('Last name'),
+  firstName: nameValidation('имени'),
+  lastName: nameValidation('фамилии'),
   login: loginValidation,
   password: passwordValidation,
   confirmPassword: passwordValidation
