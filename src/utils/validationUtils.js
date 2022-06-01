@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 const passwordValidation = Yup.string()
   .min(6, 'Длина должна быть не менее 6 символов')
   .max(12, 'Длина должна быть не более 12 символов')
-  .matches(/^\S+[a-zA-Z0-9]$/, 'Password can only contain Latin letters.')
+  .matches(/^\S+[a-zA-Z0-9]$/, 'Пароль может содержать только латинские буквы.')
   .required('Поле не может быть пустым');
 
 const nameValidation = (label) => Yup.string()

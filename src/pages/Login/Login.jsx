@@ -31,11 +31,11 @@ function Login() {
 
   const loginFormFields = [
     {
-      label: 'Login',
+      label: 'Логин',
       name: 'login',
       type: 'text',
     }, {
-      label: 'Password',
+      label: 'Пароль',
       name: 'password',
       type: 'password',
     },

@@ -31,11 +31,11 @@ function Registration() {
   });
 
   const registrationFormFields = [
-    { label: 'Login', name: 'login', type: 'text' },
-    { label: 'Name', name: 'firstName', type: 'text' },
-    { label: 'Last Name', name: 'lastName', type: 'text' },
-    { label: 'Password', name: 'password', type: 'password' },
-    { label: 'Repeat the password', name: 'confirmPassword', type: 'password' },
+    { label: 'Логин', name: 'login', type: 'text' },
+    { label: 'Имя', name: 'firstName', type: 'text' },
+    { label: 'Фамилия', name: 'lastName', type: 'text' },
+    { label: 'Пароль', name: 'password', type: 'password' },
+    { label: 'Повторите пароль', name: 'confirmPassword', type: 'password' },
     { label: 'Email', name: 'email', type: 'email' },
   ];
 
