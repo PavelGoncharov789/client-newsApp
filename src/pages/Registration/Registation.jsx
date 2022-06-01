@@ -30,7 +30,7 @@ function Registration() {
     },
   });
 
-  const registrFormFields = [
+  const registrationFormFields = [
     { label: 'Login', name: 'login', type: 'text' },
     { label: 'Name', name: 'firstName', type: 'text' },
     { label: 'Last Name', name: 'lastName', type: 'text' },
@@ -43,8 +43,8 @@ function Registration() {
     <div>
       <Header />
       <form onSubmit={formik.handleSubmit}>
-        <div className="registr">
-          {registrFormFields.map(
+        <div className="registration-block">
+          {registrationFormFields.map(
             ({ label, name, type }) => (
               <TextField
                 key={name}
@@ -67,7 +67,7 @@ function Registration() {
               variant="outlined"
               className="registration-form"
               disabled={
-                Object.keys((formik.touched).length !== 6
+                Object.keys((formik.touched).length !== registrationFormFields.length
                 || Object.keys(formik.touched).length !== 0)
                 && Object.keys(formik.errors).length
               }

@@ -1,20 +1,20 @@
 import * as Yup from 'yup';
 
 const passwordValidation = Yup.string()
-  .min(6, 'Password should be of minimum 6 characters length')
-  .max(12, 'Password should be of maximum 12 characters length')
+  .min(6, 'Длина должна быть не менее 6 символов')
+  .max(12, 'Длина должна быть не более 12 символов')
   .matches(/^\S+[a-zA-Z0-9]$/, 'Password can only contain Latin letters.')
-  .required('Required field');
+  .required('Поле не может быть пустым');
 
 const nameValidation = (label) => Yup.string()
-  .min(2, `${label} should be of minimum 2 characters length`)
-  .max(12, 'Input field should be of maximum 12 characters length')
-  .required('Required field');
+  .min(2, `${label} длина должна быть не менее 2 символов`)
+  .max(12, `${label} длина должна быть не более 12 символов`)
+  .required('Поле не может быть пустым');
 
 const loginValidation = Yup.string()
-  .min(4, 'Login should be of minimum 4 characters length')
-  .max(12, 'Login should be of maximum 12 characters length')
-  .required('Required field');
+  .min(4, 'Длина должна быть не менее 4 символов')
+  .max(12, 'Длина должна быть не более 12 символов')
+  .required('Поле не может быть пустым');
 
 export const registrValidationSchema = Yup.object({
   firstName: nameValidation('Name'),
@@ -22,8 +22,8 @@ export const registrValidationSchema = Yup.object({
   login: loginValidation,
   password: passwordValidation,
   confirmPassword: passwordValidation
-  .oneOf([Yup.ref('password')], 'Пароли не совпадают'),
-  email: Yup.string().email('Invalid email').required('Required'),
+    .oneOf([Yup.ref('password')], 'Пароли не совпадают'),
+  email: Yup.string().email('Неверный адрес электронной почты').required('Поле не может быть пустым'),
 });
 
 export const loginValidationSchema = Yup.object({

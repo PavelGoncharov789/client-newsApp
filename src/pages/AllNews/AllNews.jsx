@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import NewsCard from '../NewsCard/NewsCard';
+import NewsCard from '../../components/NewsCard/NewsCard';
 import Header from '../../components/Header/Header';
 
 import { getNewsAction } from '../../store/actions';

@@ -46,28 +46,30 @@ function Login() {
       <Header />
       <form onSubmit={formik.handleSubmit}>
         <div className="login-form">
-          {loginFormFields.map(({ label, name, type }) => (
-            <TextField
-              key={name}
-              id="outlined-basic"
-              label={label}
-              variant="outlined"
-              margin="dense"
-              name={name}
-              type={type}
-              value={formik.values[name]}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={!!(formik.touched[name] && formik.errors[name])}
-              helperText={formik.touched[name] && formik.errors[name]}
-            />
-          ))}
+          {loginFormFields.map(
+            ({ label, name, type }) => (
+              <TextField
+                key={name}
+                id="outlined-basic"
+                label={label}
+                variant="outlined"
+                margin="dense"
+                name={name}
+                type={type}
+                value={formik.values[name]}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={!!(formik.touched[name] && formik.errors[name])}
+                helperText={formik.touched[name] && formik.errors[name]}
+              />
+            ),
+          )}
           <div>
             <Button
               variant="outlined"
               className="button-login"
               disabled={
-                Object.keys((formik.touched).length !== 2
+                Object.keys((formik.touched).length !== loginFormFields.length
                 || Object.keys(formik.touched).length !== 0)
                 && Object.keys(formik.errors).length
               }
