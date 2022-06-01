@@ -39,14 +39,14 @@ function* signUp(action) {
 
 function* signIn(action) {
   try {
-    const data = yield call(adapter, {
+    const { data } = yield call(adapter, {
       method: 'post',
       url: '/auth/login',
       data: action.payload,
     });
-    const { token, user } = data.data;
-
-    if (data.data) {
+    
+    if (data) {
+      const { token, user } = data;
       setTokenFromLS(token);
       yield put(logInSuccessAction(user));
     } else {
@@ -71,7 +71,6 @@ function* whoAmI() {
 
 function* logOut() {
   localStorage.removeItem('token');
-  yield put(logOut());
 }
 
 export default function* authWatcher() {

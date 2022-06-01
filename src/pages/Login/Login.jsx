@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../../components/Header/Header';
+
 import { logInUserAction } from '../../store/actions';
 import { loginValidationSchema } from '../../utils/validationUtils';
 
@@ -13,13 +14,12 @@ import './style.css';
 function Login() {
   const authUser = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
-
   const formik = useFormik({
     initialValues: {
       login: '',
       password: '',
     },
-    loginValidationSchema,
+    validationSchema: loginValidationSchema,
     onSubmit: (values) => {
       dispatch(logInUserAction(values));
     },
@@ -66,6 +66,11 @@ function Login() {
             <Button
               variant="outlined"
               className="button-login"
+              disabled={
+                Object.keys((formik.touched).length !== 2
+                || Object.keys(formik.touched).length !== 0)
+                && Object.keys(formik.errors).length
+              }
               type="submit"
             >
               Вход

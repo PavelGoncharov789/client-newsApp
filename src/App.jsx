@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import AllNews from './pages/AllNews/AllNews';
-import UserPage from './pages/UserPage/UserPage';
 import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registation';
+import UserPage from './pages/UserPage/UserPage';
+
 import { whoAmI } from './store/actions';
 import { readTokenFromLS } from './utils/tokenUtils';
 

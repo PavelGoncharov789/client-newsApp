@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { Button, TextField } from '@mui/material';
 
 import Header from '../../components/Header/Header';
+
 import { addUserAction } from '../../store/actions';
 import { registrValidationSchema } from '../../utils/validationUtils';
 
@@ -23,7 +24,7 @@ function Registration() {
       confirmPassword: '',
       email: '',
     },
-    registrValidationSchema,
+    validationSchema: registrValidationSchema,
     onSubmit: (values) => {
       dispatch(addUserAction(values));
     },
@@ -43,26 +44,33 @@ function Registration() {
       <Header />
       <form onSubmit={formik.handleSubmit}>
         <div className="registr">
-          {registrFormFields.map(({ label, name, type }) => (
-            <TextField
-              key={name}
-              id="outlined-basic"
-              label={label}
-              variant="outlined"
-              margin="dense"
-              name={name}
-              type={type}
-              value={formik.values[name]}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={!!(formik.touched[name] && formik.errors[name])}
-              helperText={formik.touched[name] && formik.errors[name]}
-            />
-          ))}
+          {registrFormFields.map(
+            ({ label, name, type }) => (
+              <TextField
+                key={name}
+                id="outlined-basic"
+                label={label}
+                variant="outlined"
+                margin="dense"
+                name={name}
+                type={type}
+                value={formik.values[name]}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={!!(formik.touched[name] && formik.errors[name])}
+                helperText={formik.touched[name] && formik.errors[name]}
+              />
+            ),
+          )}
           <div>
             <Button
               variant="outlined"
               className="registration-form"
+              disabled={
+                Object.keys((formik.touched).length !== 6
+                || Object.keys(formik.touched).length !== 0)
+                && Object.keys(formik.errors).length
+              }
               type="submit"
             >
               Регистрация
