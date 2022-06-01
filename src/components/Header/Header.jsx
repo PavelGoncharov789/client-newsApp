@@ -22,7 +22,7 @@ function Header() {
   if (authUser?.id) {
     return (
       <div className="header">
-        <Button variant="outlined" onClick={() => logut()}>Выход</Button>
+        <Button variant="outlined" onClick={() => logut}>Выход</Button>
       </div>
     );
   }

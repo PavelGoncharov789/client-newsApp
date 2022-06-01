@@ -18,6 +18,7 @@ function App() {
 
   useEffect(() => {
     if (token) {
+      console.log(token);
       dispatch(whoAmI());
     }
   }, [dispatch, token]);
@@ -27,8 +28,8 @@ function App() {
       <Routes>
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<AllNews />} />
         <Route path="/user" element={<UserPage />} />
+        <Route path="/" element={<AllNews />} />
       </Routes>
     </BrowserRouter>
   );

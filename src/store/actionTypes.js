@@ -11,3 +11,6 @@ export const WHOAMI = 'WHOAMI';
 export const WHOAMI_SUCCESS = 'WHOAMI_SUCCESS';
 export const WHOAMI_FAIL = 'WHOAMI_FAIL';
 export const LOGOUT = 'LOGOUT';
+export const GET_USER_DATA = 'GET_USER_DATA';
+export const GET_USER_DATA_SUCCESS = 'GET_USER_DATA_SUCCESS';
+export const GET_USER_DATA_FAIL = 'GET_USER_DATA_FAIL';
