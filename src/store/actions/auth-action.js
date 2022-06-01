@@ -21,7 +21,3 @@ export const whoAmISuccess = createAction(actionTypes.WHOAMI_SUCCESS);
 export const whoAmFail = createAction(actionTypes.WHOAMI_FAIL);
 
 export const logOut = createAction(actionTypes.LOGOUT);
-
-export const logOutSuccess = createAction(actionTypes.LOGOUT_SUCCESS);
-
-export const logOutFail = createAction(actionTypes.LOGOUT_FAIL);

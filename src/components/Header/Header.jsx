@@ -20,10 +20,10 @@ function Header() {
 
   return (
     <div className="header">
-      <Link to="/registration" id="link">
+      <Link to="/registration" className="link">
         <Button variant="outlined" className="button-registration">Регистрация</Button>
       </Link>
-      <Link to="/login" id="link">
+      <Link to="/login" className="link">
         <Button variant="outlined" className="button-registration">Вход</Button>
       </Link>
     </div>

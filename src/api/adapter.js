@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { readTokenFromLS } from '../utils';
+
+import { readTokenFromLS } from '../utils/tokenUtils';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,

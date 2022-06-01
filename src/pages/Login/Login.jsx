@@ -4,9 +4,9 @@ import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Header from '../../components/header/Header';
+import Header from '../../components/Header/Header';
 import { logInUserAction } from '../../store/actions';
-import { loginValidationSchema } from '../../utils/index';
+import { loginValidationSchema } from '../../utils/validationUtils';
 
 import './style.css';
 
@@ -29,10 +29,11 @@ function Login() {
     return <Navigate to="/" />;
   }
 
-  const arrayFromLogin = [
+  const loginFormFields = [
     {
-      label: 'login',
+      label: 'Login',
       name: 'login',
+      type: 'text',
     }, {
       label: 'Password',
       name: 'password',
@@ -45,19 +46,20 @@ function Login() {
       <Header />
       <form onSubmit={formik.handleSubmit}>
         <div className="login-form">
-          {arrayFromLogin.map(({ label, name, type }) => (
+          {loginFormFields.map(({ label, name, type }) => (
             <TextField
+              key={name}
               id="outlined-basic"
               label={label}
               variant="outlined"
               margin="dense"
               name={name}
               type={type}
-              value={formik.values.login}
+              value={formik.values[name]}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              error={!!(formik.touched.login && formik.errors.login)}
-              helperText={formik.touched.login && formik.errors.login}
+              error={!!(formik.touched[name] && formik.errors[name])}
+              helperText={formik.touched[name] && formik.errors[name]}
             />
           ))}
           <div>

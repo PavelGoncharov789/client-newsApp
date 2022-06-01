@@ -15,10 +15,8 @@ import {
   whoAmISuccess,
   logInUserAction,
   signUpSuccessAction,
-  logOutSuccess,
-  logOutFail,
 } from '../actions';
-import { setTokenFromLS } from '../../utils';
+import { setTokenFromLS } from '../../utils/tokenUtils';
 
 function* signUp(action) {
   try {
@@ -46,11 +44,11 @@ function* signIn(action) {
       url: '/auth/login',
       data: action.payload,
     });
+    const { token, user } = data.data;
 
     if (data.data) {
-      setTokenFromLS(data.data.token);
-      // localStorage.setItem('token', data.data.token);
-      yield put(logInSuccessAction(data.data.user));
+      setTokenFromLS(token);
+      yield put(logInSuccessAction(user));
     } else {
       yield cancel('Error!');
     }
@@ -72,12 +70,8 @@ function* whoAmI() {
 }
 
 function* logOut() {
-  try {
-    localStorage.removeItem('token');
-    yield put(logOutSuccess());
-  } catch (e) {
-    yield put(logOutFail(e.message));
-  }
+  localStorage.removeItem('token');
+  yield put(logOut());
 }
 
 export default function* authWatcher() {

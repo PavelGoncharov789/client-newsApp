@@ -4,9 +4,9 @@ import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 
-import Header from '../../components/header/Header';
+import Header from '../../components/Header/Header';
 import { addUserAction } from '../../store/actions';
-import { validationSchema } from '../../utils/index';
+import { registrValidationSchema } from '../../utils/validationUtils';
 
 import './style.css';
 
@@ -22,16 +22,16 @@ function Registration() {
       confirmPassword: '',
       email: '',
     },
-    validationSchema,
+    registrValidationSchema,
     onSubmit: (values) => {
       dispatch(addUserAction(values));
     },
   });
 
-  const formArray = [
-    { label: 'login', name: 'login' },
-    { label: 'Name', name: 'firstName' },
-    { label: 'Last Name', name: 'lastName' },
+  const registrFormFields = [
+    { label: 'Login', name: 'login', type: 'text' },
+    { label: 'Name', name: 'firstName', type: 'text' },
+    { label: 'Last Name', name: 'lastName', type: 'text' },
     { label: 'Password', name: 'password', type: 'password' },
     { label: 'Repeat the password', name: 'confirmPassword', type: 'password' },
     { label: 'Email', name: 'email', type: 'email' },
@@ -42,7 +42,7 @@ function Registration() {
       <Header />
       <form onSubmit={formik.handleSubmit}>
         <div className="registr">
-          {formArray.map(({ label, name, type }) => (
+          {registrFormFields.map(({ label, name, type }) => (
             <TextField
               key={name}
               id="outlined-basic"

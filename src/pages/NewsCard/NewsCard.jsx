@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 
-function NewsCard({ element }) {
-  const {
-    title,
-    text,
-    author,
-    tags,
-  } = element;
-
+function NewsCard({
+  element: {
+    title, text, author, tags,
+  },
+}) {
   return (
     <div className="news">
       <h1>{title}</h1>

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Header from '../../components/header/Header';
+import Header from '../../components/Header/Header';
 
 import './styles.css';
 
-import NewsCard from '../news/NewsCard';
+import NewsCard from '../NewsCard/NewsCard';
 import { getNewsAction } from '../../store/actions';
 
 export default function AllNews() {

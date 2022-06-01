@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import AllNews from './pages/allNews/AllNews';
-
-import Registration from './pages/registration/Registation';
-import Login from './pages/login/Login';
+import AllNews from './pages/AllNews/AllNews';
+import UserPage from './pages/UserPage/UserPage';
+import Login from './pages/Login/Login';
+import Registration from './pages/Registration/Registation';
+import { whoAmI } from './store/actions';
+import { readTokenFromLS } from './utils/tokenUtils';
 
 import './App.css';
-import UserPage from './pages/userPage/UserPage';
-import { whoAmI } from './store/actions';
 
 function App() {
-  const token = localStorage.getItem('token');
+  const token = readTokenFromLS();
   const dispatch = useDispatch();
 
   useEffect(() => {
