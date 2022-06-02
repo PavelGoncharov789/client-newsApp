@@ -14,7 +14,7 @@ function NewsCard({
   element: {
     title, text, author, tags,
   },
-}) {console.log(author,"author");
+}) {
   return (
     <Card sx={{ minWidth: 275, maxWidth: 250 }} className="card">
       <CardContent>

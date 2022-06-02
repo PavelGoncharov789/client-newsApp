@@ -12,7 +12,6 @@ import { loginValidationSchema } from '../../utils/validationUtils';
 import './style.css';
 
 function Login() {
-  console.log("login");
   const authUser = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
   const formik = useFormik({

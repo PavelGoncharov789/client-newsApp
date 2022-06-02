@@ -11,11 +11,9 @@ import './style.css';
 
 function UserPage() {
   const { id } = useParams();
-  console.log(id,"iddd");
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer.userData);
   const isLoading = useSelector((state) => state.userReducer.loading);
-  console.log(userData.news);
 
   useEffect(() => {
       dispatch(getUserDataAction(id));

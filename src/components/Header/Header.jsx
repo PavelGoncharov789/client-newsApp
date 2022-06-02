@@ -28,7 +28,6 @@ function Header(props) {
   const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
   const logut = () => {
-    console.log('log logasut');
     removeTokenFromLS();
     dispatch(logOut());
   };

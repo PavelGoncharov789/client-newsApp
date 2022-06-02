@@ -10,13 +10,11 @@ import * as actionTypes from '../actionTypes';
 import { getUserDataSuccessAction, getUserDataFailAction } from '../actions/user-action';
 
 function* getUserData(action) {
-  console.log("я тут");
   try {
     const { data } = yield call(adapter, {
       method: 'get',
       url: `/users/${action.payload}`,
     });
-    console.log(data, 'data');
     if (data) {
       yield put(getUserDataSuccessAction(data));
     } else {
