@@ -7,20 +7,16 @@ import {
 
 import adapter from '../../api/adapter';
 import * as actionTypes from '../actionTypes';
-import {
-  getUserDataSuccessAction
-} from '../actions';
+import { getUserDataSuccessAction, getUserDataFailAction } from '../actions/user-action';
 
 function* getUserData(action) {
-  console.log( action.payload );
   try {
-    const data = yield call(adapter, {
+    const { data } = yield call(adapter, {
       method: 'get',
-      url: `/user/${ action.payload }`,
+      url: `/users/${action.payload}`,
     });
-
-    if (data.data) {
-      yield put(getUserDataSuccessAction(data.data));
+    if (data) {
+      yield put(getUserDataSuccessAction(data));
     } else {
       yield cancel('Can\'n get news');
     }

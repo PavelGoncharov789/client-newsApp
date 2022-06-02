@@ -18,7 +18,6 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      console.log(token);
       dispatch(whoAmI());
     }
   }, [dispatch, token]);

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, TextField } from '@mui/material';
 
@@ -13,6 +13,7 @@ import { registrValidationSchema } from '../../utils/validationUtils';
 import './style.css';
 
 function Registration() {
+  const authUser = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -38,6 +39,10 @@ function Registration() {
     { label: 'Повторите пароль', name: 'confirmPassword', type: 'password' },
     { label: 'Email', name: 'email', type: 'email' },
   ];
+
+  if (authUser?.id) {
+    return <Navigate to="/user" />;
+  }
 
   return (
     <div>

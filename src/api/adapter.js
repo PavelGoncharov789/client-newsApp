@@ -11,7 +11,7 @@ instance.interceptors.request.use(
     const { headers } = config;
     const token = readTokenFromLS();
     if (token) {
-      headers.Authorization = token;
+      headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },

@@ -26,7 +26,7 @@ function Login() {
   });
 
   if (authUser?.id) {
-    return <Navigate to="/" />;
+    return <Navigate to="/user" />;
   }
 
   const loginFormFields = [
