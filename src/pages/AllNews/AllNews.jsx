@@ -18,8 +18,9 @@ export default function AllNews() {
   }, []);
 
   return (
-    <div className="allNews">
-      <Header />
+  <div>
+    <Header namePage="News" />
+    <div className={"allNews"}>
       {isLoading && 'loading'}
       {
       !isLoading
@@ -27,5 +28,6 @@ export default function AllNews() {
       && allNews.map((element) => (<NewsCard element={element} key={element.id} />))
       }
     </div>
+  </div>
   );
 }

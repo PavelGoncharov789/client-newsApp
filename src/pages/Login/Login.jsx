@@ -12,6 +12,7 @@ import { loginValidationSchema } from '../../utils/validationUtils';
 import './style.css';
 
 function Login() {
+  console.log("login");
   const authUser = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -26,7 +27,7 @@ function Login() {
   });
 
   if (authUser?.id) {
-    return <Navigate to="/user" />;
+    return <Navigate to="/" />;
   }
 
   const loginFormFields = [
@@ -43,7 +44,7 @@ function Login() {
 
   return (
     <div>
-      <Header />
+      <Header namePage="Вход" />
       <form onSubmit={formik.handleSubmit}>
         <div className="login-form">
           {loginFormFields.map(

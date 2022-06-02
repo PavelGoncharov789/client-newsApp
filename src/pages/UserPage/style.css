@@ -1,0 +1,10 @@
+.content{
+  display: flex;
+  padding-top: 200px;
+  width: 90%;
+  margin: auto;
+}
+
+.card{
+  background-color: rgb(231, 231, 231) !important;
+}
