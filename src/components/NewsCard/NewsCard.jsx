@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import './style.css';
@@ -16,24 +15,24 @@ function NewsCard({
   },
 }) {
   return (
-    <Card sx={{ minWidth: 275, maxWidth: 250 }} className="card">
+    <Card sx={{ minWidth: 250, maxWidth: 278, height: 300 }} className="card">
       <CardContent>
-        <Typography variant="h5" component="div">
+        <Typography variant="h5" component="div" className="title">
           {title}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography sx={{ mb: 1.5 }} color="text.secondary" className="text">
           {text}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions className="cardActions">
         <Link to={`/user/${author}`} className="link">
-          <Button size="small">{author}</Button>
+          {author}
         </Link>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Link to="/" className="link">
           {tags}
-        </Typography>
+        </Link>
       </CardActions>
-  </Card>
+    </Card>
   );
 }
 

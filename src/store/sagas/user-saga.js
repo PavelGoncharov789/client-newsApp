@@ -11,17 +11,17 @@ import { getUserDataSuccessAction, getUserDataFailAction } from '../actions/user
 
 function* getUserData(action) {
   try {
-    const { data } = yield call(adapter, {
+    const data = yield call(adapter, {
       method: 'get',
       url: `/users/${action.payload}`,
     });
     if (data) {
-      yield put(getUserDataSuccessAction(data));
+      yield put(getUserDataSuccessAction(data.data));
     } else {
       yield cancel('Can\'n get news');
     }
   } catch (e) {
-    yield put(getUserDataFailAction(e.message));
+    yield put(getUserDataFailAction(e.response.data.message));
   }
 }
 

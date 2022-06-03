@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../../components/Header/Header';
 import NewsCard from '../../components/NewsCard/NewsCard';
+import UserInfo from '../../components/UserInfo/UserInfo';
 
 import { getUserDataAction } from '../../store/actions/user-action';
 
@@ -14,20 +15,36 @@ function UserPage() {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer.userData);
   const isLoading = useSelector((state) => state.userReducer.loading);
+  const error = useSelector((state) => state.userReducer.error);
 
   useEffect(() => {
-      dispatch(getUserDataAction(id));
-  }, []);
+    dispatch(getUserDataAction(id));
+  }, [dispatch, id]);
+
+  if (error) {
+    return (
+      <div>
+        <Header />
+        <h3 className="error">{error}</h3>
+      </div>
+    );
+  }
 
   return (
     <div>
       <Header />
       <div className="content">
-      {
-      !isLoading
-      && userData.news > 0
-      && userData.news.map((element) => (<NewsCard element={element} key={element.id} />))
-      }
+        <div className="user-info">
+          <UserInfo userData={userData} />
+        </div>
+        <div className="user-news">
+          {
+          !isLoading
+          && userData
+          && userData?.news?.length > 0
+          && userData?.news?.map((element) => (<NewsCard element={element} key={element.id} />))
+          }
+        </div>
       </div>
     </div>
   );
