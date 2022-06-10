@@ -7,6 +7,5 @@ export function setTokenFromLS(token) {
 }
 
 export function removeTokenFromLS() {
-
   localStorage.removeItem('token');
 }

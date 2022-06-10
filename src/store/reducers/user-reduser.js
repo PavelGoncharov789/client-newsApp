@@ -1,7 +1,7 @@
 import * as actionTypes from '../actionTypes';
 
 const initialState = {
-  userData: [],
+  userData: null,
   loading: false,
   error: null,
 };
@@ -12,7 +12,7 @@ export default function userReducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: true,
-        userData: [],
+        userData: null,
         error: null,
       };
     case actionTypes.GET_USER_DATA_SUCCESS:
@@ -26,7 +26,7 @@ export default function userReducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
-        userData: [],
+        userData: null,
         error: action.payload,
       };
     default: return state;

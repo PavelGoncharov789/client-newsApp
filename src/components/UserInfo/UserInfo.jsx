@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import './style.css';
 
 function UserInfo({
-  userData: {
+  user: {
     firstName, lastName, login, email,
   },
 }) {
@@ -33,7 +33,7 @@ function UserInfo({
 }
 
 UserInfo.propTypes = {
-  userData: PropTypes.shape({
+  user: PropTypes.shape({
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     login: PropTypes.string,

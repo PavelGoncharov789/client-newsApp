@@ -19,7 +19,7 @@ export default function AllNews() {
 
   return (
     <div>
-      <Header namePage="News" />
+      <Header pageName="News" />
       <div className="allNews">
         {isLoading && 'loading'}
         {

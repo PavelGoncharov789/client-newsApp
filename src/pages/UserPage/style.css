@@ -1,19 +1,20 @@
-.user-news{
+.user-news {
   display: flex;
   padding-top: 100px;
   width: 80%;
   margin: auto;
+  flex-wrap: wrap;
 }
 
-.card{
+.card {
   background-color: rgb(231, 231, 231) !important;
 }
 
-.user-info{
+.user-info {
   width: 20%;
   padding: 50px;
 }
 
-.content{
+.content {
   display: flex;
 }

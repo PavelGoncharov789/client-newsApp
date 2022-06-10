@@ -21,31 +21,29 @@ function UserPage() {
     dispatch(getUserDataAction(id));
   }, [dispatch, id]);
 
-  if (error) {
-    return (
-      <div>
-        <Header />
-        <h3 className="error">{error}</h3>
-      </div>
-    );
+  const arrayForRender = userData?.news?.length > 0;
+
+  if (isLoading) {
+    return <div>loading...</div>;
   }
 
   return (
     <div>
-      <Header />
-      <div className="content">
-        <div className="user-info">
-          <UserInfo userData={userData} />
+      <Header pageName="user-news" />
+      {error ? (
+        <h3 className="error">{error}</h3>
+      ) : (
+        <div className="content">
+          <div className="user-info">
+            {userData ? <UserInfo user={userData} /> : null}
+          </div>
+          <div className="user-news">
+            {arrayForRender ? userData.news.map((element) => (
+              <NewsCard element={element} key={element.id} />
+            )) : null}
+          </div>
         </div>
-        <div className="user-news">
-          {
-          !isLoading
-          && userData
-          && userData?.news?.length > 0
-          && userData?.news?.map((element) => (<NewsCard element={element} key={element.id} />))
-          }
-        </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from '@mui/material';
 
 import './style.css';
 
@@ -25,11 +27,9 @@ function NewsCard({
         </Typography>
       </CardContent>
       <CardActions className="cardActions">
+        {tags}
         <Link to={`/user/${author}`} className="link">
           {author}
-        </Link>
-        <Link to="/" className="link">
-          {tags}
         </Link>
       </CardActions>
     </Card>

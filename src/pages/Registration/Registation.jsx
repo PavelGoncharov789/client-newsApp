@@ -46,7 +46,7 @@ function Registration() {
 
   return (
     <div>
-      <Header namePage="Регистрация" />
+      <Header pageName="Регистрация" />
       <form onSubmit={formik.handleSubmit}>
         <div className="registration-block">
           {registrationFormFields.map(

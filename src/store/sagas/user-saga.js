@@ -11,20 +11,20 @@ import { getUserDataSuccessAction, getUserDataFailAction } from '../actions/user
 
 function* getUserData(action) {
   try {
-    const data = yield call(adapter, {
+    const { data } = yield call(adapter, {
       method: 'get',
       url: `/users/${action.payload}`,
     });
     if (data) {
-      yield put(getUserDataSuccessAction(data.data));
+      yield put(getUserDataSuccessAction(data));
     } else {
       yield cancel('Can\'n get news');
     }
-  } catch (e) {
-    yield put(getUserDataFailAction(e.response.data.message));
+  } catch (error) {
+    yield put(getUserDataFailAction(error.message));
   }
 }
 
-export default function* userDataWatcher() {
+export default function* userWatcher() {
   yield takeLatest(actionTypes.GET_USER_DATA, getUserData);
 }
