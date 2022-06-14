@@ -18,9 +18,14 @@
   justify-content: center;
 }
 
+.text-date{
+  justify-content: flex-start;
+}
+
 .cardActions {
   display: flex;
-  align-items: baseline;
+  justify-content: space-between;
+  width: 90%;
 }
 
 .card-button {

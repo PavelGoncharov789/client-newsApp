@@ -16,6 +16,7 @@ export default function AllNews() {
   useEffect(() => {
     dispatch(getNewsAction());
   }, []);
+  console.log(allNews);
 
   return (
     <div>
@@ -24,8 +25,8 @@ export default function AllNews() {
         {isLoading && 'loading'}
         {!isLoading
           && allNews.length > 0
-          && allNews.map((element) => (
-            <NewsCard element={element} key={element.id} />
+          && allNews.map((news) => (
+            <NewsCard news={news} key={news.id} />
           ))}
       </div>
     </div>
