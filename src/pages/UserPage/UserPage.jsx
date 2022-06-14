@@ -31,7 +31,7 @@ function UserPage() {
     <div>
       <Header pageName="user-news" />
       {error ? (
-        <h3 className="error">{error}</h3>
+        <h3 className="error">Пока нет добавленых новостей</h3>
       ) : (
         <div className="content">
           <div className="user-info">

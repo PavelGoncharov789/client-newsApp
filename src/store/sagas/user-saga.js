@@ -18,7 +18,7 @@ function* getUserData(action) {
     if (data) {
       yield put(getUserDataSuccessAction(data));
     } else {
-      yield cancel('Can\'n get news');
+      yield cancel('Can\'n get user data');
     }
   } catch (error) {
     yield put(getUserDataFailAction(error.message));

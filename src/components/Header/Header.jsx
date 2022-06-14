@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   AppBar,
@@ -19,8 +20,7 @@ import { removeTokenFromLS } from '../../utils/tokenUtils';
 
 import './style.css';
 
-function Header(props) {
-  const { pageName } = props;
+function Header({ pageName }) {
   const authUser = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
 
@@ -44,17 +44,21 @@ function Header(props) {
               <CameraIndoorRoundedIcon />
             </Link>
           </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              {pageName}
-            </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {pageName}
+          </Typography>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton sx={{ p: 0 }}>
-              <Avatar
-                alt={authUser?.login}
-                src="../../static/images/avatar/defaultAvatar.png"
-              />
-            </IconButton>
-            {authUser?.id ? (
+            {authUser ? (
+              <Link to={`/user/${authUser.id}`} className="link">
+                <IconButton sx={{ p: 0 }}>
+                  <Avatar
+                    alt={authUser?.login}
+                    src="../../static/images/avatar/defaultAvatar.png"
+                  />
+                </IconButton>
+              </Link>
+            ) : null}
+            {authUser ? (
               <Button
                 variant="outlined"
                 onClick={logut}
@@ -77,6 +81,8 @@ function Header(props) {
   );
 }
 
-
+Header.propTypes = {
+  pageName: PropTypes.string,
+}.isRequired;
 
 export default Header;
