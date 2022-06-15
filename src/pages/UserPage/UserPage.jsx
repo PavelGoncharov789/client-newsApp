@@ -23,8 +23,8 @@ function UserPage() {
   }, [dispatch, id]);
 
   useEffect(() => {
-    setNews(userData?.News ?? []);
-  }, [userData?.News]);
+    setNews(userData?.news ?? []);
+  }, [userData?.news]);
 
   if (isLoading) {
     return <div>loading...</div>;
@@ -33,7 +33,7 @@ function UserPage() {
     <div>
       <Header pageName="user-news" />
       {error ? (
-        <h3 className="error">Пока нет добавленых новостей</h3>
+        <h3 className="error">Что-то пошло не так, попробуйте позже</h3>
       ) : (
         <div className="content">
           <div className="user-info">
@@ -41,8 +41,8 @@ function UserPage() {
           </div>
           <div className="user-news">
             {newsArray.length > 0 ? newsArray.map((news) => (
-              <NewsCard news={news} key={news.id} />
-            )) : null}
+              <NewsCard news={news} author={userData} key={news.id} />
+            )) : <h3 className="error">Пока нет добавленых новостей</h3>}
           </div>
         </div>
       )}

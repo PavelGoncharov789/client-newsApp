@@ -25,7 +25,7 @@ export default function AllNews() {
         {!isLoading
           && allNews.length > 0
           && allNews.map((news) => (
-            <NewsCard news={news} key={news.id} />
+            <NewsCard news={news} author={news.author} key={news.id} />
           ))}
       </div>
     </div>

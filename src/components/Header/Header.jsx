@@ -49,24 +49,24 @@ function Header({ pageName }) {
           </Typography>
           <Box sx={{ flexGrow: 0 }}>
             {authUser ? (
-              <Link to={`/user/${authUser.id}`} className="link">
-                <IconButton sx={{ p: 0 }}>
-                  <Avatar
-                    alt={authUser?.login}
-                    src="../../static/images/avatar/defaultAvatar.png"
-                  />
-                </IconButton>
-              </Link>
-            ) : null}
-            {authUser ? (
-              <Button
-                variant="outlined"
-                onClick={logut}
-                color="inherit"
-                className="button-logout"
-              >
-                Выход
-              </Button>
+              <>
+                <Link to={`/user/${authUser.id}`} className="link">
+                  <IconButton sx={{ p: 0 }}>
+                    <Avatar
+                      alt={authUser?.login}
+                      src="../../static/images/avatar/defaultAvatar.png"
+                    />
+                  </IconButton>
+                </Link>
+                <Button
+                  variant="outlined"
+                  onClick={logut}
+                  color="inherit"
+                  className="button-logout"
+                >
+                  Выход
+                </Button>
+              </>
             ) : (
               <Link to="/login" className="link">
                 <Button variant="contained" color="inherit">
