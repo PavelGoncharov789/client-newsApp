@@ -18,14 +18,16 @@ export default function AllNews() {
   }, []);
 
   return (
-    <div className="allNews">
-      <Header />
-      {isLoading && 'loading'}
-      {
-      !isLoading
-      && allNews.length > 0
-      && allNews.map((element) => (<NewsCard element={element} key={element.id} />))
-      }
+    <div>
+      <Header pageName="News" />
+      <div className="allNews">
+        {isLoading && 'loading'}
+        {!isLoading
+          && allNews.length > 0
+          && allNews.map((news) => (
+            <NewsCard news={news} author={news.author} key={news.id} />
+          ))}
+      </div>
     </div>
   );
 }

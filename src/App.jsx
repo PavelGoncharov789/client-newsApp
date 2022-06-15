@@ -15,20 +15,19 @@ import './App.css';
 function App() {
   const token = readTokenFromLS();
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (token) {
       dispatch(whoAmI());
     }
-  }, [dispatch, token]);
+  }, [token]);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/user/:id" element={<UserPage />} />
         <Route path="/" element={<AllNews />} />
-        <Route path="/user" element={<UserPage />} />
       </Routes>
     </BrowserRouter>
   );

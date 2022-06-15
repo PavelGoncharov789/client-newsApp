@@ -15,3 +15,7 @@ button.button-registration {
 .link {
   text-decoration: none;
 }
+
+button.button-logout {
+  margin-left: 30px;
+}

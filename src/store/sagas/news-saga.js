@@ -18,7 +18,6 @@ function* getNewsWorker() {
       method: 'get',
       url: '/news',
     });
-
     if (data.data) {
       yield put(getNewsSuccessAction(data.data));
     } else {

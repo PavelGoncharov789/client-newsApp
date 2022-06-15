@@ -43,7 +43,7 @@ function Login() {
 
   return (
     <div>
-      <Header />
+      <Header pageName="Вход" />
       <form onSubmit={formik.handleSubmit}>
         <div className="login-form">
           {loginFormFields.map(
