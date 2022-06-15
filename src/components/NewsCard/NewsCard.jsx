@@ -30,7 +30,12 @@ function NewsCard({
           {text}
         </Typography>
         <Typography color="text.secondary" className="text-date">
-          {DateTime.fromISO(createdAt).setLocale('ru').toLocaleString({ month: 'long', day: 'numeric' })}
+          {DateTime.fromISO(createdAt).setLocale('ru').toLocaleString({
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+          })}
         </Typography>
       </CardContent>
       <CardActions className="cardActions">
