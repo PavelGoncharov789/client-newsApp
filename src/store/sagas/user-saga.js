@@ -18,7 +18,7 @@ function* getUserData(action) {
     if (data) {
       yield put(getUserDataSuccessAction(data));
     } else {
-      yield cancel('Can\'n get user data');
+      yield cancel('Не могу получить пользовательские данные');
     }
   } catch (error) {
     yield put(getUserDataFailAction(error.message));

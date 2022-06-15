@@ -16,7 +16,6 @@ export default function AllNews() {
   useEffect(() => {
     dispatch(getNewsAction());
   }, []);
-  console.log(allNews);
 
   return (
     <div>

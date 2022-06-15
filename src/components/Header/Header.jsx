@@ -82,7 +82,7 @@ function Header({ pageName }) {
 }
 
 Header.propTypes = {
-  pageName: PropTypes.string,
-}.isRequired;
+  pageName: PropTypes.string.isRequired,
+};
 
 export default Header;
