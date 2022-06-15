@@ -35,6 +35,7 @@ function NewsCard({
             month: 'long',
             day: 'numeric',
             hour: 'numeric',
+            minute: '2-digit',
           })}
         </Typography>
       </CardContent>
