@@ -14,7 +14,7 @@ import './style.css';
 
 function NewsCard({
   news: {
-    title, text, authorId, tags, createdAt,
+    title, text, authorId, tags, createdAt, Users,
   },
 }) {
   return (
@@ -41,7 +41,7 @@ function NewsCard({
       </CardContent>
       <CardActions className="cardActions">
         <Link to={`/user/${authorId}`} className="link">
-          {authorId}
+          {Users?.login}
         </Link>
       </CardActions>
     </Card>
@@ -55,6 +55,7 @@ NewsCard.propTypes = {
     authorId: PropTypes.number,
     tags: PropTypes.string,
     createdAt: PropTypes.string,
+    Users: PropTypes.shape,
   }).isRequired,
 };
 
