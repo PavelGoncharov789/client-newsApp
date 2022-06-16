@@ -30,7 +30,7 @@ function* signUp(action) {
       yield put(signUpSuccessAction());
       yield put(logInUserAction(action.payload));
     } else {
-      yield cancel('The user is not created');
+      yield cancel('Возникла ошибка! Пользователь не создан');
     }
   } catch (e) {
     yield put(signUpFailAction(e.message));

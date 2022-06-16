@@ -41,7 +41,7 @@ function Registration() {
   ];
 
   if (authUser?.id) {
-    return <Navigate to={`/user/${authUser.id }`} />;
+    return <Navigate to={`/user/${authUser.id}`} />;
   }
 
   return (

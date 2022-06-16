@@ -29,6 +29,26 @@ export default function newsReducer(state = initialState, action = {}) {
         newsList: [],
         error: action.payload,
       };
-    default: return state;
+    case actionTypes.ADD_NEWS:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case actionTypes.ADD_NEWS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        newsList: [...state.newsList, action.payload],
+        error: null,
+      };
+    case actionTypes.ADD_NEWS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
   }
 }

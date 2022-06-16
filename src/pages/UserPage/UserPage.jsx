@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header/Header';
 import NewsCard from '../../components/NewsCard/NewsCard';
 import UserInfo from '../../components/UserInfo/UserInfo';
+import ModalForm from '../../components/modal/ModalForm';
 
 import { getUserDataAction } from '../../store/actions/user-action';
 
@@ -38,6 +39,7 @@ function UserPage() {
         <div className="content">
           <div className="user-info">
             {userData ? <UserInfo user={userData} /> : null}
+            <ModalForm />
           </div>
           <div className="user-news">
             {newsArray.length > 0 ? newsArray.map((news) => (
