@@ -12,6 +12,8 @@ import {
   getNewsFailAction,
   addNewsSuccessAction,
   addNewsFailAction,
+  getUserDataAction,
+  getNewsAction,
 } from '../actions';
 
 function* getNewsWorker() {
@@ -31,15 +33,17 @@ function* getNewsWorker() {
 }
 
 function* addNewsWorker(action) {
+  const { values, id } = action.payload;
   try {
     const data = yield call(adapter, {
       method: 'post',
       url: '/news',
-      data: action.payload,
+      data: values,
     });
-
     if (data.status === 201) {
       yield put(addNewsSuccessAction(action.payload));
+      yield put(getUserDataAction(id));
+      yield put(getNewsAction());
     } else {
       yield cancel('Ошибка! Попробуйте позже...');
     }

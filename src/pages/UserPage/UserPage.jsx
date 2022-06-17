@@ -17,7 +17,10 @@ function UserPage() {
   const userData = useSelector((state) => state.userReducer.userData);
   const isLoading = useSelector((state) => state.userReducer.loading);
   const error = useSelector((state) => state.userReducer.error);
+  const user = useSelector((state) => state.authReducer.user);
   const [newsArray, setNews] = useState([]);
+
+  console.log(user?.id);
 
   useEffect(() => {
     dispatch(getUserDataAction(id));
@@ -26,7 +29,6 @@ function UserPage() {
   useEffect(() => {
     setNews(userData?.news ?? []);
   }, [userData?.news]);
-
   if (isLoading) {
     return <div>loading...</div>;
   }
@@ -39,7 +41,7 @@ function UserPage() {
         <div className="content">
           <div className="user-info">
             {userData ? <UserInfo user={userData} /> : null}
-            <ModalForm />
+            {user?.id == id ? <ModalForm /> : null}
           </div>
           <div className="user-news">
             {newsArray.length > 0 ? newsArray.map((news) => (
