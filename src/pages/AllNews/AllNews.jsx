@@ -24,7 +24,7 @@ export default function AllNews() {
         {isLoading && 'loading'}
         {!isLoading
           && allNews.length > 0
-          && allNews.map((news) => (
+          && allNews.reverse().map((news) => (
             <NewsCard news={news} author={news.author} key={news.id} />
           ))}
       </div>

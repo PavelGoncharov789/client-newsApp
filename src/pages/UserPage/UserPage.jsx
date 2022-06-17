@@ -44,7 +44,7 @@ function UserPage() {
             {user?.id == id ? <ModalForm /> : null}
           </div>
           <div className="user-news">
-            {newsArray.length > 0 ? newsArray.map((news) => (
+            {newsArray.length > 0 ? newsArray.reverse().map((news) => (
               <NewsCard news={news} author={userData} key={news.id} />
             )) : <h3 className="error">Пока нет добавленых новостей</h3>}
           </div>

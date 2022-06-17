@@ -41,7 +41,7 @@ function* addNewsWorker(action) {
       data: values,
     });
     if (data.status === 201) {
-      yield put(addNewsSuccessAction(action.payload));
+      yield put(addNewsSuccessAction(values));
       yield put(getUserDataAction(id));
       yield put(getNewsAction());
     } else {
