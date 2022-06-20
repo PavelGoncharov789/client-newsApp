@@ -20,8 +20,6 @@ function UserPage() {
   const user = useSelector((state) => state.authReducer.user);
   const [newsArray, setNews] = useState([]);
 
-  console.log(user?.id);
-
   useEffect(() => {
     dispatch(getUserDataAction(id));
   }, [dispatch, id]);
@@ -29,6 +27,7 @@ function UserPage() {
   useEffect(() => {
     setNews(userData?.news ?? []);
   }, [userData?.news]);
+
   if (isLoading) {
     return <div>loading...</div>;
   }

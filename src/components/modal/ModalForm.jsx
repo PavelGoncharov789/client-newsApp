@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -21,7 +21,7 @@ function ModalForm() {
   const user = useSelector((state) => state.authReducer.user);
   const { id } = user;
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -96,10 +96,11 @@ function ModalForm() {
             <div>
               <Button
                 disabled={
-                  Object.keys(
-                    formik.touched.length !== addNewsFormFields.length
+                  (Object.keys(formik.touched).length == 0
+                  || Object.keys(
+                    Object.keys(formik.touched).length !== addNewsFormFields.length
                     || Object.keys(formik.touched).length !== 0,
-                  ) && Object.keys(formik.errors).length
+                  )) && Object.keys(formik.errors).length
                 }
                 type="submit"
               >
