@@ -15,6 +15,7 @@ import { addNewsAction } from '../../store/actions';
 import { addNewsSchema } from '../../utils/addnewsUtils';
 
 import './styles.css';
+import AddPictures from '../test/AddPictures';
 
 function ModalForm() {
   const dispatch = useDispatch();
@@ -22,12 +23,14 @@ function ModalForm() {
   const { id } = user;
 
   const [open, setOpen] = useState(false);
+  const [image, setImage] = useState('')
 
   const formik = useFormik({
     initialValues: {
       title: '',
       text: '',
       tags: '',
+      pictures: '',
     },
     validationSchema: addNewsSchema,
     onSubmit: (values) => {
@@ -45,9 +48,10 @@ function ModalForm() {
   };
 
   const addNewsFormFields = [
-    { label: 'Заголовок', name: 'title' },
-    { label: 'Текст', name: 'text' },
-    { label: 'Теги', name: 'tags' },
+    { label: 'Заголовок', name: 'title', type: 'text' },
+    { label: 'Текст', name: 'text', type: 'text' },
+    { label: 'Теги', name: 'tags', type: 'text' },
+    { label: '', name: 'pictures', type: 'file'}
   ];
 
   return (
@@ -60,7 +64,8 @@ function ModalForm() {
         <DialogContent>
           <form onSubmit={formik.handleSubmit}>
             <div className="dialog-content">
-              {addNewsFormFields.map(({ label, name }) => (
+              <AddPictures setImage={setImage} />
+              {addNewsFormFields.map(({ label, name, type }) => (
                 <>
                   {name === 'text' ? (
                     <TextareaAutosize
@@ -82,7 +87,7 @@ function ModalForm() {
                       variant="outlined"
                       margin="dense"
                       name={name}
-                      type="text"
+                      type={type}
                       value={formik.values[name]}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
