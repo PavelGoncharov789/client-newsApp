@@ -23,7 +23,7 @@ function ModalForm() {
   const { id } = user;
 
   const [open, setOpen] = useState(false);
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -34,7 +34,8 @@ function ModalForm() {
     },
     validationSchema: addNewsSchema,
     onSubmit: (values) => {
-      dispatch(addNewsAction({ values, id }));
+      console.log(image[0]);
+      dispatch(addNewsAction({ values, id, image}));
     },
   });
 
@@ -48,10 +49,9 @@ function ModalForm() {
   };
 
   const addNewsFormFields = [
-    { label: 'Заголовок', name: 'title', type: 'text' },
-    { label: 'Текст', name: 'text', type: 'text' },
-    { label: 'Теги', name: 'tags', type: 'text' },
-    { label: '', name: 'pictures', type: 'file'}
+    { label: 'Заголовок', name: 'title', },
+    { label: 'Текст', name: 'text', },
+    { label: 'Теги', name: 'tags', },
   ];
 
   return (
@@ -87,7 +87,7 @@ function ModalForm() {
                       variant="outlined"
                       margin="dense"
                       name={name}
-                      type={type}
+                      type="text"
                       value={formik.values[name]}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}

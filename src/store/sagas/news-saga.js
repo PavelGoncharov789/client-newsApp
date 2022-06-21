@@ -33,12 +33,15 @@ function* getNewsWorker() {
 }
 
 function* addNewsWorker(action) {
-  const { values, id } = action.payload;
+  console.log(action.payload);
+  const { values, id, image } = action.payload;
+  console.log(image);
   try {
     const data = yield call(adapter, {
       method: 'post',
       url: '/news',
       data: values,
+      files: image,
     });
     if (data.status === 201) {
       yield put(addNewsSuccessAction(values));
