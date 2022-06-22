@@ -14,22 +14,20 @@ import {
 import './style.css';
 
 function NewsCard({
-  news: {
-    title, text, authorId, tags, createdAt, img,
-  },
-  author: {
-    login,
-  },
+  news: { title, text, authorId, tags, createdAt, img },
+  author: { login },
 }) {
   return (
     <Card sx={{ width: 778, height: 480 }} className="card">
       <CardContent sx={{ width: 700, height: 460 }} className="card-content">
-        <CardMedia
-          component="img"
-          height="194"
-          image={`http://localhost:5000/${img}`}
-          alt="Ошибка загрузки"
-        />
+        {img ? (
+          <CardMedia
+            component="img"
+            height="194"
+            image={`http://localhost:5000/${img}`}
+            alt="Ошибка загрузки"
+          />
+        ) : null}
         <Typography variant="h4" component="div" className="title">
           {title}
         </Typography>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,12 +30,15 @@ function ModalForm() {
       title: '',
       text: '',
       tags: '',
-      pictures: '',
     },
     validationSchema: addNewsSchema,
     onSubmit: (values) => {
-      console.log(image[0]);
-      dispatch(addNewsAction({ values, id, image}));
+      const formData = new FormData();
+      formData.append('file', image);
+      formData.append('title', values.title);
+      formData.append('text', values.text);
+      formData.append('tags', values.tags);
+      dispatch(addNewsAction({ formData, values, id }));
     },
   });
 
@@ -49,9 +52,9 @@ function ModalForm() {
   };
 
   const addNewsFormFields = [
-    { label: 'Заголовок', name: 'title', },
-    { label: 'Текст', name: 'text', },
-    { label: 'Теги', name: 'tags', },
+    { label: 'Заголовок', name: 'title' },
+    { label: 'Текст', name: 'text' },
+    { label: 'Теги', name: 'tags' },
   ];
 
   return (
@@ -64,11 +67,12 @@ function ModalForm() {
         <DialogContent>
           <form onSubmit={formik.handleSubmit}>
             <div className="dialog-content">
-              <AddPictures setImage={setImage} />
-              {addNewsFormFields.map(({ label, name, type }) => (
+              <AddPictures setFile={setImage} />
+              {addNewsFormFields.map(({ label, name }) => (
                 <>
                   {name === 'text' ? (
                     <TextareaAutosize
+                      key={name}
                       className="text-area"
                       aria-label="Текст статьи"
                       placeholder="Введите текст"

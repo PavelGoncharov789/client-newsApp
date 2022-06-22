@@ -29,7 +29,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="/" element={<AllNews />} />
-        <Route path="/pic" element={<AddPictures />} />
       </Routes>
     </BrowserRouter>
   );

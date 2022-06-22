@@ -1,14 +1,12 @@
-import React, { useState, useRef, useCallback } from 'react';
-
-import { Button, TextField } from '@mui/material';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 
-function AddPictures({ setImage }) {
+function AddPictures({ setFile }) {
   const onSelectImageHandler = (files) => {
-    console.log(files[0]);
     const file = files[0];
-    setImage(file)
+    setFile(file);
   };
 
   return (
@@ -21,5 +19,9 @@ function AddPictures({ setImage }) {
     </div>
   );
 }
+
+AddPictures.propTypes = {
+  setFile: PropTypes.func,
+};
 
 export default AddPictures;
