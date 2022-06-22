@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-
 import {
   DialogTitle,
   DialogContent,
@@ -10,13 +9,12 @@ import {
   Button,
   TextareaAutosize,
 } from '@mui/material';
-
 import { addNewsAction } from '../../store/actions';
 import { addNewsSchema } from '../../utils/addnewsUtils';
 
 import './styles.css';
 
-function ModalForm() {
+const ModalForm = React.memo(function ModalForm() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
   const { id } = user;
@@ -35,9 +33,7 @@ function ModalForm() {
     },
   });
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleClickOpen = () => setOpen(true);
 
   const handleClose = () => {
     setOpen(false);
@@ -64,6 +60,7 @@ function ModalForm() {
                 <>
                   {name === 'text' ? (
                     <TextareaAutosize
+                      key={name}
                       className="text-area"
                       aria-label="Текст статьи"
                       placeholder="Введите текст"
@@ -113,6 +110,6 @@ function ModalForm() {
       </Dialog>
     </div>
   );
-}
+});
 
 export default ModalForm;
