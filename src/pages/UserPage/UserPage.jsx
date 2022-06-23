@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header/Header';
 import NewsCard from '../../components/NewsCard/NewsCard';
 import UserInfo from '../../components/UserInfo/UserInfo';
+import ModalForm from '../../components/modal/ModalForm';
 
 import { getUserDataAction } from '../../store/actions/user-action';
 
@@ -16,6 +17,7 @@ function UserPage() {
   const userData = useSelector((state) => state.userReducer.userData);
   const isLoading = useSelector((state) => state.userReducer.loading);
   const error = useSelector((state) => state.userReducer.error);
+  const user = useSelector((state) => state.authReducer.user);
   const [newsArray, setNews] = useState([]);
 
   useEffect(() => {
@@ -38,6 +40,7 @@ function UserPage() {
         <div className="content">
           <div className="user-info">
             {userData ? <UserInfo user={userData} /> : null}
+            {user?.id == id ? <ModalForm /> : null}
           </div>
           <div className="user-news">
             {newsArray.length > 0 ? newsArray.map((news) => (
