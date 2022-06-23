@@ -11,6 +11,7 @@ import { whoAmI } from './store/actions';
 import { readTokenFromLS } from './utils/tokenUtils';
 
 import './App.css';
+import NewsPagination from './components/Pagination/Pagination';
 
 function App() {
   const token = readTokenFromLS();
@@ -28,6 +29,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="/" element={<AllNews />} />
+        <Route path="/p" element={<NewsPagination />} />
       </Routes>
     </BrowserRouter>
   );
