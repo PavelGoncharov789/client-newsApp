@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-
 import {
   DialogTitle,
   DialogContent,
@@ -10,12 +9,11 @@ import {
   Button,
   TextareaAutosize,
 } from '@mui/material';
-
 import { addNewsAction } from '../../store/actions';
 import { addNewsSchema } from '../../utils/addnewsUtils';
+import AddPictures from '../AddPictures/AddPictures';
 
 import './styles.css';
-import AddPictures from '../test/AddPictures';
 
 function ModalForm() {
   const dispatch = useDispatch();
@@ -35,9 +33,9 @@ function ModalForm() {
     onSubmit: (values) => {
       const formData = new FormData();
       formData.append('file', image);
-      formData.append('title', values.title);
-      formData.append('text', values.text);
-      formData.append('tags', values.tags);
+      for (let key in values){
+        formData.append(key, values[key]);
+      }
       dispatch(addNewsAction({ formData, values, id }));
     },
   });

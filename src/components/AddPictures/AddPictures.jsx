@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './styles.css';
 
 function AddPictures({ setFile }) {
+  
   const onSelectImageHandler = (files) => {
     const file = files[0];
     setFile(file);
