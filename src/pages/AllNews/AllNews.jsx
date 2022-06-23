@@ -11,10 +11,9 @@ import NewsPagination from '../../components/Pagination/Pagination';
 
 export default function AllNews() {
   const dispatch = useDispatch();
-  const news = useSelector((state) => state.newsReducer.newsList);
+  const newsArray = useSelector((state) => state.newsReducer.newsList);
   const isLoading = useSelector((state) => state.newsReducer.loading);
   const [allNews, setAllNews] = useState([]);
-  console.log(news);
 
   useEffect(() => {
     dispatch(getNewsAction());
@@ -31,10 +30,9 @@ export default function AllNews() {
             <NewsCard news={news} author={news.author} key={news.id} />
           ))}
       </div>
-      {news?
-      <NewsPagination news={news} setAllNews={setAllNews}/>
-      :null
-    }
+      {newsArray.length ? (
+        <NewsPagination newsArray={newsArray} setAllNews={setAllNews} />
+      ) : null}
     </div>
   );
 }
