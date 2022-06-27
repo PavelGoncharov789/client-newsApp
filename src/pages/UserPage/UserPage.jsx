@@ -6,11 +6,11 @@ import Header from '../../components/Header/Header';
 import NewsCard from '../../components/NewsCard/NewsCard';
 import UserInfo from '../../components/UserInfo/UserInfo';
 import ModalForm from '../../components/modal/ModalForm';
+import Search from '../../components/Search/Search';
 
 import { getUserDataAction } from '../../store/actions/user-action';
 
 import './style.css';
-import Search from '../../components/Search/Search';
 
 function UserPage() {
   const { id } = useParams();

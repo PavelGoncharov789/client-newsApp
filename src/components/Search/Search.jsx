@@ -12,16 +12,17 @@ import './styles.css';
 
 function Search({ arrayForFilter, setResultArray }) {
   const [value, setValue] = useState('');
-  const [searchId, setSearchId] = useState('');
+  const [searchId, setSearchId] = useState('title');
   const arraySelect = [
     { id: 'title', text: 'Загловку' },
     { id: 'text', text: 'Тексту' },
     { id: 'author', text: 'Автору' },
     { id: 'tags', text: 'Тегам' },
   ];
+  console.log(arrayForFilter);
 
   useEffect(() => {
-    if (value.length) {
+    if (value.length < 1) {
       setResultArray(null);
     }
   }, [value]);
