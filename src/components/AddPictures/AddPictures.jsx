@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
-
 function AddPictures({ setFile }) {
   
   const onSelectImageHandler = (files) => {
@@ -14,6 +12,7 @@ function AddPictures({ setFile }) {
     <div>
       <input
         type="file"
+        accept=".jpg, .jpeg, .png"
         id="inputGroupFile01"
         onChange={(e) => onSelectImageHandler(e.target.files)}
       />

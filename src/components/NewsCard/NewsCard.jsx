@@ -14,7 +14,14 @@ import {
 import './style.css';
 
 function NewsCard({
-  news: { title, text, authorId, tags, createdAt, img },
+  news: {
+    title,
+    text,
+    authorId,
+    tags,
+    createdAt,
+    img,
+  },
   author: { login },
 }) {
   return (
@@ -24,7 +31,7 @@ function NewsCard({
           <CardMedia
             component="img"
             height="194"
-            image={`http://localhost:5000/${img}`}
+            image={`${process.env.REACT_APP_BASE_URL}/${img}`}
             alt="Ошибка загрузки"
           />
         ) : null}

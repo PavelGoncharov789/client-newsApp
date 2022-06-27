@@ -15,5 +15,4 @@ export const GET_USER_DATA = 'GET_USER_DATA';
 export const GET_USER_DATA_SUCCESS = 'GET_USER_DATA_SUCCESS';
 export const GET_USER_DATA_FAIL = 'GET_USER_DATA_FAIL';
 export const ADD_NEWS = 'ADD_NEWS';
-export const ADD_NEWS_SUCCESS = 'ADD_NEWS_SUCCESS';
 export const ADD_NEWS_FAIL = 'ADD_NEWS_FAIL';

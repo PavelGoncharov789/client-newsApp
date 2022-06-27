@@ -41,7 +41,6 @@ function* addNewsWorker(action) {
       data: formData, values,
     });
     if (data.status === 201) {
-      yield put(addNewsSuccessAction(values));
       yield put(getUserDataAction(id));
       yield put(getNewsAction());
     } else {

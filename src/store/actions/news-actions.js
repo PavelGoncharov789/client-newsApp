@@ -10,6 +10,4 @@ export const getNewsFailAction = createAction(actionTypes.GET_NEWS_FAIL);
 
 export const addNewsAction = createAction(actionTypes.ADD_NEWS);
 
-export const addNewsSuccessAction = createAction(actionTypes.ADD_NEWS_SUCCESS);
-
 export const addNewsFailAction = createAction(actionTypes.ADD_NEWS_FAIL);

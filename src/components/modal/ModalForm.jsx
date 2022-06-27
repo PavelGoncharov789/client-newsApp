@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -10,15 +10,16 @@ import {
   TextareaAutosize,
 } from '@mui/material';
 import { addNewsAction } from '../../store/actions';
-import { addNewsSchema } from '../../utils/addnewsUtils';
+import { addNewsSchema } from '../../utils/validationUtils';
 import AddPictures from '../AddPictures/AddPictures';
 
 import './styles.css';
 
-function ModalForm() {
+const ModalForm = React.memo(function ModalForm() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
   const { id } = user;
+  let isDisabled = true;
 
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState('');
@@ -55,6 +56,13 @@ function ModalForm() {
     { label: 'Теги', name: 'tags' },
   ];
 
+useMemo(() => {
+isDisabled = (Object.keys(formik.touched).length == 0
+    || Object.keys(
+      Object.keys(formik.touched).length !== addNewsFormFields.length
+      || Object.keys(formik.touched).length !== 0,
+    )) && Object.keys(formik.errors).length}, [Object.keys(formik.touched), Object.keys(formik.errors)])
+
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -84,7 +92,6 @@ function ModalForm() {
                   ) : (
                     <TextField
                       key={name}
-                      id="outlined-basic"
                       label={label}
                       variant="outlined"
                       margin="dense"
@@ -102,13 +109,7 @@ function ModalForm() {
             </div>
             <div>
               <Button
-                disabled={
-                  (Object.keys(formik.touched).length == 0
-                  || Object.keys(
-                    Object.keys(formik.touched).length !== addNewsFormFields.length
-                    || Object.keys(formik.touched).length !== 0,
-                  )) && Object.keys(formik.errors).length
-                }
+                disabled={isDisabled}
                 type="submit"
               >
                 Добавить
@@ -120,6 +121,6 @@ function ModalForm() {
       </Dialog>
     </div>
   );
-}
+})
 
 export default ModalForm;
