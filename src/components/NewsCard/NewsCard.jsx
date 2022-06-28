@@ -32,7 +32,7 @@ function NewsCard({
             component="img"
             height="194"
             image={`${process.env.REACT_APP_BASE_URL}/${img}`}
-            alt="Ошибка загрузки"
+            alt=""
           />
         ) : null}
         <Typography variant="h4" component="div" className="title">

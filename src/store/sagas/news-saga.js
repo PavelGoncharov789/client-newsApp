@@ -10,7 +10,6 @@ import * as actionTypes from '../actionTypes';
 import {
   getNewsSuccessAction,
   getNewsFailAction,
-  addNewsSuccessAction,
   addNewsFailAction,
   getUserDataAction,
   getNewsAction,
@@ -33,12 +32,19 @@ function* getNewsWorker() {
 }
 
 function* addNewsWorker(action) {
-  const { formData, values, id } = action.payload;
+  const { image, values, id } = action.payload;
+
+  const formData = new FormData();
+  formData.append('file', image);
+  for (const key in values) {
+    formData.append(key, values[key]);
+  }
+
   try {
     const data = yield call(adapter, {
       method: 'post',
       url: '/news',
-      data: formData, values,
+      data: formData,
     });
     if (data.status === 201) {
       yield put(getUserDataAction(id));

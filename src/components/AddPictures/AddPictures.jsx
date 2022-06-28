@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function AddPictures({ setFile }) {
-  
-  const onSelectImageHandler = (files) => {
-    const file = files[0];
-    setFile(file);
+  const onSelectImageHandler = (event) => {
+    if (event.target.files[0]) {
+      setFile(event.target.files[0]);
+    }
   };
 
   return (
