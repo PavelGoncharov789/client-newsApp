@@ -10,8 +10,8 @@ import * as actionTypes from '../actionTypes';
 import {
   getNewsSuccessAction,
   getNewsFailAction,
-  addNewsSuccessAction,
   addNewsFailAction,
+  addNewsSuccessAction,
   getUserDataAction,
   getNewsAction,
 } from '../actions';
@@ -33,17 +33,23 @@ function* getNewsWorker() {
 }
 
 function* addNewsWorker(action) {
-  const { values, id } = action.payload;
+  const { image, values, id } = action.payload;
+
+  const formData = new FormData();
+  formData.append('file', image);
+  for (const key in values) {
+    formData.append(key, values[key]);
+  }
+
   try {
     const data = yield call(adapter, {
       method: 'post',
       url: '/news',
-      data: values,
+      data: formData,
     });
     if (data.status === 201) {
-      yield put(addNewsSuccessAction(values));
       yield put(getUserDataAction(id));
-      yield put(getNewsAction());
+      yield put(addNewsSuccessAction());
     } else {
       yield cancel('Ошибка! Попробуйте позже...');
     }

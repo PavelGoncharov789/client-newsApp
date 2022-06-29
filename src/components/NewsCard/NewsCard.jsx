@@ -8,21 +8,33 @@ import {
   CardActions,
   CardContent,
   Typography,
+  CardMedia,
 } from '@mui/material';
 
 import './style.css';
 
 function NewsCard({
   news: {
-    title, text, authorId, tags, createdAt,
+    title,
+    text,
+    authorId,
+    tags,
+    createdAt,
+    img,
   },
-  author: {
-    login,
-  },
+  author: { login },
 }) {
   return (
     <Card sx={{ width: 778, height: 480 }} className="card">
       <CardContent sx={{ width: 700, height: 460 }} className="card-content">
+        {img ? (
+          <CardMedia
+            component="img"
+            height="194"
+            image={`${process.env.REACT_APP_BASE_URL}/${img}`}
+            alt={title}
+          />
+        ) : null}
         <Typography variant="h4" component="div" className="title">
           {title}
         </Typography>
@@ -57,6 +69,7 @@ NewsCard.propTypes = {
     text: PropTypes.string,
     authorId: PropTypes.number,
     tags: PropTypes.string,
+    img: PropTypes.string,
     createdAt: PropTypes.string,
   }).isRequired,
   author: PropTypes.shape({
