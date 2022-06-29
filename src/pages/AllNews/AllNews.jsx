@@ -15,25 +15,24 @@ import { getNewsAction } from '../../store/actions';
 
 import './styles.css';
 
+const QUANTITY_VARIANTS = [3, 5, 10];
+
 export default function AllNews() {
   const dispatch = useDispatch();
   const newsArray = useSelector((state) => state.newsReducer.newsList);
   const isLoading = useSelector((state) => state.newsReducer.loading);
   const [currentPage, setCurrentPage] = useState(1);
   const [quantity, setQuanity] = useState(3);
-  const [newsForRender, setNewsForRender] = useState([]);
-  const menuItemArray = [3, 5, 10];
 
   const pages = useMemo(() => Math.ceil(newsArray.length / quantity), [quantity, newsArray.length]);
-  const lastIndex = currentPage * quantity;
-  const firstIndex = lastIndex - quantity;
-  const arrayForRender = useMemo(
-    () => newsArray.slice(firstIndex, lastIndex),
-    [pages, currentPage],
-  );
+
+  const arrayForRender = useMemo(() => {
+    const lastIndex = currentPage * quantity;
+    const firstIndex = lastIndex - quantity;
+    return newsArray.slice(firstIndex, lastIndex);
+  }, [pages, currentPage]);
 
   useEffect(() => {
-    setNewsForRender(arrayForRender);
     if (currentPage > pages) {
       setCurrentPage(1);
     }
@@ -53,8 +52,8 @@ export default function AllNews() {
       <div className="allNews">
         {isLoading && 'loading'}
         {!isLoading
-        && newsForRender.length > 0
-        && newsForRender.map((news) => (
+        && arrayForRender.length > 0
+        && arrayForRender.map((news) => (
           <NewsCard news={news} author={news.author} key={news.id} />
         ))}
       </div>
@@ -72,7 +71,7 @@ export default function AllNews() {
             label={quantity}
             onChange={handleQuantity}
           >
-            { menuItemArray.map((item) => <MenuItem value={item} key={item}>{item}</MenuItem>) }
+            { QUANTITY_VARIANTS.map((item) => <MenuItem value={item} key={item}>{item}</MenuItem>) }
           </Select>
         </FormControl>
       </div>
