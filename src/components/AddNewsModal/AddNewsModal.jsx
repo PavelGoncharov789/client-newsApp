@@ -11,21 +11,15 @@ import {
   TextareaAutosize,
 } from '@mui/material';
 
+import AddPictures from '../AddPictures/AddPictures';
 import { addNewsAction } from '../../store/actions';
 import { addNewsSchema } from '../../utils/validationUtils';
-import AddPictures from '../AddPictures/AddPictures';
 
 import './styles.css';
 
 const AddNewsModal = React.memo(function AddNewsModal() {
   const dispatch = useDispatch();
   const { id } = useSelector((state) => state.authReducer.user);
-
-  let isDisabled;
-
-  useMemo(() => {
-    isDisabled = true;
-  }, []);
 
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState('');
@@ -57,14 +51,18 @@ const AddNewsModal = React.memo(function AddNewsModal() {
     { label: 'Теги', name: 'tags' },
   ];
 
-  useMemo(() => {
-    isDisabled = (Object.keys(formik.touched).length == 0
-    || Object.keys(
-      Object.keys(formik.touched).length !== addNewsFormFields.length
-      || Object.keys(formik.touched).length !== 0,
-    ))
-    && Object.keys(formik.errors).length;
+  const isDisabled = useMemo(() => {
+    return !!(
+      (Object.keys(formik.touched).length == 0
+        || Object.keys(
+          Object.keys(formik.touched).length !== addNewsFormFields.length
+            || Object.keys(formik.touched).length !== 0,
+        ))
+        && Object.keys(formik.errors).length
+    );
   }, [Object.keys(formik.touched), Object.keys(formik.errors)]);
+
+  console.log(isDisabled);
 
   return (
     <div>
@@ -77,34 +75,32 @@ const AddNewsModal = React.memo(function AddNewsModal() {
           <form onSubmit={formik.handleSubmit}>
             <div className="dialog-content">
               <AddPictures setFile={setImage} />
-              {addNewsFormFields.map(({ label, name }) => (name === 'text') ? (
-                <TextareaAutosize
-                  key={name}
-                  className="text-area"
-                  aria-label="Текст статьи"
-                  placeholder="Введите текст"
-                  name={name}
-                  value={formik.values[name]}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={!!(formik.touched[name] && formik.errors[name])}
-                  helperText={formik.touched[name] && formik.errors[name]}
-                />
-              ) : (
-                <TextField
-                  key={name}
-                  label={label}
-                  variant="outlined"
-                  margin="dense"
-                  name={name}
-                  type="text"
-                  value={formik.values[name]}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={!!(formik.touched[name] && formik.errors[name])}
-                  helperText={formik.touched[name] && formik.errors[name]}
-                />
-              ))}
+              {addNewsFormFields.map(({ label, name }) =>
+                name === 'text' ? (
+                  <TextareaAutosize
+                    key={name}
+                    className="text-area"
+                    placeholder="Введите текст"
+                    name={name}
+                    value={formik.values[name]}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                ) : (
+                  <TextField
+                    key={name}
+                    label={label}
+                    variant="outlined"
+                    margin="dense"
+                    name={name}
+                    type="text"
+                    value={formik.values[name]}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={!!(formik.touched[name] && formik.errors[name])}
+                    helperText={formik.touched[name] && formik.errors[name]}
+                  />
+                ))}
             </div>
             <div>
               <Button disabled={isDisabled} type="submit">
