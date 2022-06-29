@@ -51,12 +51,14 @@ const AddNewsModal = React.memo(function AddNewsModal() {
     { label: 'Теги', name: 'tags' },
   ];
 
+  const formikTouchedKeys = Object.keys(formik.touched);
+
   const isDisabled = useMemo(() => {
     return !!(
-      (Object.keys(formik.touched).length === 0
+      (formikTouchedKeys.length === 0
         || Object.keys(
-          Object.keys(formik.touched).length !== addNewsFormFields.length
-            || Object.keys(formik.touched).length !== 0,
+          formikTouchedKeys.length !== addNewsFormFields.length
+            || formikTouchedKeys.length !== 0,
         ))
         && Object.keys(formik.errors).length
     );

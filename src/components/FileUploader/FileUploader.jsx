@@ -15,7 +15,7 @@ function FileUploader({ setFile }) {
         type="file"
         accept=".jpg, .jpeg, .png"
         id="inputGroupFile01"
-        onChange={(e) => onSelectImageHandler(e)}
+        onChange={onSelectImageHandler}
       />
     </div>
   );
