@@ -31,6 +31,7 @@ function UserPage() {
   if (isLoading) {
     return <div>loading...</div>;
   }
+
   return (
     <div>
       <Header pageName="user-news" />
@@ -40,7 +41,7 @@ function UserPage() {
         <div className="content">
           <div className="user-info">
             {userData ? <UserInfo user={userData} /> : null}
-            {authUserId == id ? <AddNewsModal /> : null}
+            {authUserId === Number(id) ? <AddNewsModal /> : null}
           </div>
           <div className="user-news">
             {newsArray.length > 0 ? newsArray.map((news) => (

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function AddPictures({ setFile }) {
+function FileUploader({ setFile }) {
+
   const onSelectImageHandler = (event) => {
     if (event.target.files[0]) {
       setFile(event.target.files[0]);
@@ -14,14 +15,14 @@ function AddPictures({ setFile }) {
         type="file"
         accept=".jpg, .jpeg, .png"
         id="inputGroupFile01"
-        onChange={(e) => onSelectImageHandler(e.target.files)}
+        onChange={(e) => onSelectImageHandler(e)}
       />
     </div>
   );
 }
 
-AddPictures.propTypes = {
-  setFile: PropTypes.func,
+FileUploader.propTypes = {
+  setFile: PropTypes.func.isRequired,
 };
 
-export default AddPictures;
+export default FileUploader;

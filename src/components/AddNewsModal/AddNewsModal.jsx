@@ -11,7 +11,7 @@ import {
   TextareaAutosize,
 } from '@mui/material';
 
-import AddPictures from '../AddPictures/AddPictures';
+import AddPictures from '../FileUploader/FileUploader';
 import { addNewsAction } from '../../store/actions';
 import { addNewsSchema } from '../../utils/validationUtils';
 
@@ -53,16 +53,14 @@ const AddNewsModal = React.memo(function AddNewsModal() {
 
   const isDisabled = useMemo(() => {
     return !!(
-      (Object.keys(formik.touched).length == 0
+      (Object.keys(formik.touched).length === 0
         || Object.keys(
           Object.keys(formik.touched).length !== addNewsFormFields.length
             || Object.keys(formik.touched).length !== 0,
         ))
         && Object.keys(formik.errors).length
     );
-  }, [Object.keys(formik.touched), Object.keys(formik.errors)]);
-
-  console.log(isDisabled);
+  }, [formik.touched, formik.errors]);
 
   return (
     <div>

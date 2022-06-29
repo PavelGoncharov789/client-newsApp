@@ -11,6 +11,7 @@ import {
   getNewsSuccessAction,
   getNewsFailAction,
   addNewsFailAction,
+  addNewsSuccessAction,
   getUserDataAction,
   getNewsAction,
 } from '../actions';
@@ -48,7 +49,7 @@ function* addNewsWorker(action) {
     });
     if (data.status === 201) {
       yield put(getUserDataAction(id));
-      yield put(getNewsAction());
+      yield put(addNewsSuccessAction());
     } else {
       yield cancel('Ошибка! Попробуйте позже...');
     }
