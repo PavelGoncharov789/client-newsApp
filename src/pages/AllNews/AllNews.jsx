@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -22,14 +22,21 @@ export default function AllNews() {
   const [currentPage, setCurrentPage] = useState(1);
   const [quantity, setQuanity] = useState(3);
   const [newsForRender, setNewsForRender] = useState([]);
+  const menuItemArray = [3, 5, 10];
 
-  const pages = Math.ceil(newsArray.length / quantity);
+  const pages = useMemo(() => Math.ceil(newsArray.length / quantity), [quantity, newsArray.length]);
   const lastIndex = currentPage * quantity;
   const firstIndex = lastIndex - quantity;
-  const currentIndex = newsArray.slice(firstIndex, lastIndex);
+  const arrayForRender = useMemo(
+    () => newsArray.slice(firstIndex, lastIndex),
+    [pages, currentPage],
+  );
 
   useEffect(() => {
-    setNewsForRender(currentIndex);
+    setNewsForRender(arrayForRender);
+    if (currentPage > pages) {
+      setCurrentPage(1);
+    }
   }, [currentPage, newsArray, quantity]);
 
   useEffect(() => {
@@ -57,7 +64,7 @@ export default function AllNews() {
           page={currentPage}
           onChange={(_, number) => setCurrentPage(number)}
         />
-        <FormControl variant="standard" sx={{ ml: 1, minWidth: 60 }}>
+        <FormControl variant="standard" sx={{ ml: 7, minWidth: 60 }}>
           <Select
             labelId="demo-simple-select-standard-label"
             id="demo-simple-select-standard"
@@ -65,9 +72,7 @@ export default function AllNews() {
             label={quantity}
             onChange={handleQuantity}
           >
-            <MenuItem value={3}>3</MenuItem>
-            <MenuItem value={5}>5</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
+            { menuItemArray.map((item) => <MenuItem value={item} key={item}>{item}</MenuItem>) }
           </Select>
         </FormControl>
       </div>
