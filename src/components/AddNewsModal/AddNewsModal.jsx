@@ -52,12 +52,12 @@ const AddNewsModal = React.memo(function AddNewsModal() {
   ];
 
   const isDisabled = useMemo(() => {
-    const formikTouchedKeys = Object.keys(formik.touched).length;
-    const formikErrorsKeys = Object.keys(formik.errors).length;
+    const touchedKeysLength = Object.keys(formik.touched).length;
+    const errorsKeysLength = Object.keys(formik.errors).length;
     return (
-      formikTouchedKeys.length === 0
-      || formikTouchedKeys !== addNewsFormFields.length
-      || (formikTouchedKeys !== 0 && formikErrorsKeys)
+      touchedKeysLength.length === 0
+      || touchedKeysLength !== addNewsFormFields.length
+      || (touchedKeysLength !== 0 && errorsKeysLength > 0)
     );
   }, [formik.touched, formik.errors, addNewsFormFields]);
 
