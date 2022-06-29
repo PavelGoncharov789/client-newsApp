@@ -4,3 +4,10 @@
   flex-direction: column;
   align-items: center;
 }
+
+.pagination {
+  width: 44%;
+  display: flex;
+  margin: auto;
+  justify-content: flex-end;
+}
