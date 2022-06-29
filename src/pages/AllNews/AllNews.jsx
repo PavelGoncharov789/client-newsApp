@@ -30,7 +30,7 @@ export default function AllNews() {
     const lastIndex = currentPage * quantity;
     const firstIndex = lastIndex - quantity;
     return newsArray.slice(firstIndex, lastIndex);
-  }, [pages, currentPage]);
+  }, [pages, currentPage, newsArray]);
 
   useEffect(() => {
     if (currentPage > pages) {
@@ -71,7 +71,7 @@ export default function AllNews() {
             label={quantity}
             onChange={handleQuantity}
           >
-            { QUANTITY_VARIANTS.map((item) => <MenuItem value={item} key={item}>{item}</MenuItem>) }
+            {QUANTITY_VARIANTS.map((item) => <MenuItem value={item} key={item}>{item}</MenuItem>)}
           </Select>
         </FormControl>
       </div>
