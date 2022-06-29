@@ -54,7 +54,7 @@ const AddNewsModal = React.memo(function AddNewsModal() {
   const isDisabled = useMemo(() => {
     const formikTouchedKeys = Object.keys(formik.touched).length;
     const formikErrorsKeys = Object.keys(formik.errors).length;
-    return !!(
+    return (
       formikTouchedKeys.length === 0
       || formikTouchedKeys !== addNewsFormFields.length
       || (formikTouchedKeys !== 0 && formikErrorsKeys)
