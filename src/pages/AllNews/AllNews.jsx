@@ -25,26 +25,33 @@ export default function AllNews() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [quantity, setQuanity] = useState(3);
+  const [resultArray, setResultArray] = useState();
 
-  const pages = useMemo(() => Math.ceil(newsArray.length / quantity), [quantity, newsArray.length]);
+  const pages = useMemo(() => {
+    if (resultArray) {
+      return Math.ceil(resultArray.length / quantity);
+    }
+    return Math.ceil(newsArray.length / quantity);
+  }, [quantity, newsArray.length, resultArray]);
 
   const arrayForRender = useMemo(() => {
     const lastIndex = currentPage * quantity;
     const firstIndex = lastIndex - quantity;
+    if (resultArray) {
+      return resultArray.slice(firstIndex, lastIndex);
+    }
     return newsArray.slice(firstIndex, lastIndex);
-  }, [pages, currentPage, newsArray]);
+  }, [pages, currentPage, newsArray, resultArray]);
 
   useEffect(() => {
     if (currentPage > pages) {
       setCurrentPage(1);
     }
-  }, [currentPage, newsArray, quantity]);
-
+  }, [currentPage, newsArray, quantity, pages]);
 
   useEffect(() => {
     dispatch(getNewsAction());
   }, []);
-  console.log(resultArray);
 
   const handleQuantity = (event) => {
     setQuanity(event.target.value);
@@ -53,15 +60,18 @@ export default function AllNews() {
   return (
     <div>
       <Header pageName="News" />
-      <Search arrayForFilter={allNews} setResultArray={setResultArray} />
+      <Search arrayForFilter={newsArray} setResultArray={setResultArray} />
       <div className="allNews">
         {isLoading && 'loading'}
-
-        {!isLoading
-        && arrayForRender.length > 0
-        && arrayForRender.map((news) => (
-          <NewsCard news={news} author={news.author} key={news.id} />
-        ))}
+        {!isLoading && arrayForRender.length > 0
+          ? resultArray
+            ? resultArray.map((news) => (
+              <NewsCard news={news} author={news.author} key={news.id} />
+            ))
+            : arrayForRender.map((news) => (
+              <NewsCard news={news} author={news.author} key={news.id} />
+            ))
+          : null}
       </div>
       <div className="pagination">
         <Pagination
