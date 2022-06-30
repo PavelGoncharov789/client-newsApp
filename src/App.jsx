@@ -11,7 +11,6 @@ import { whoAmI } from './store/actions';
 import { readTokenFromLS } from './utils/tokenUtils';
 
 import './App.css';
-import Search from './components/Search/Search';
 
 function App() {
   const token = readTokenFromLS();

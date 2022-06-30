@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { element } from 'prop-types';
 
 import SearchIcon from '@mui/icons-material/Search';
 import {
@@ -12,7 +12,8 @@ import {
 
 import './styles.css';
 
-const ARRAY_SELECT = [
+const SEARCH_OPTIONS = [
+  { id: "", text: "Всем значениям" },
   { id: 'title', text: 'Загловку' },
   { id: 'text', text: 'Тексту' },
   { id: 'author', text: 'Автору' },
@@ -21,7 +22,7 @@ const ARRAY_SELECT = [
 
 function Search({ arrayForFilter, setResultArray }) {
   const [value, setValue] = useState('');
-  const [searchId, setSearchId] = useState('title');
+  const [searchId, setSearchId] = useState('');
 
   useEffect(() => {
     if (value.length < 1) {
@@ -30,6 +31,21 @@ function Search({ arrayForFilter, setResultArray }) {
   }, [value]);
 
   function handleSearch() {
+    if (!searchId) {
+      const result = [];
+      for (let i = 0; i< arrayForFilter.length;i++){
+         SEARCH_OPTIONS.map((element) => {
+          if (typeof arrayForFilter[i][element.id] === "string" && arrayForFilter[i][element.id].includes(value)) {
+            if(!result.includes(arrayForFilter[i])) {
+              result.push(arrayForFilter[i])
+            }
+          }
+        })
+      }
+      console.log(result);
+      setResultArray(result);
+      return;
+    }
     const result = arrayForFilter.filter((item) => item[searchId].includes(value));
     setResultArray(result);
   }
@@ -50,7 +66,7 @@ function Search({ arrayForFilter, setResultArray }) {
           label="Искать по"
           onChange={(e) => setSearchId(e.target.value)}
         >
-          {ARRAY_SELECT.map((item) => (
+          {SEARCH_OPTIONS.map((item) => (
             <MenuItem value={item.id} key={item.id}>{item.text}</MenuItem>
           ))}
         </Select>
