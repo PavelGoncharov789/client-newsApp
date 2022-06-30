@@ -30,3 +30,9 @@ export const loginValidationSchema = Yup.object({
   login: loginValidation,
   password: passwordValidation,
 });
+
+export const addNewsSchema = Yup.object({
+  title: Yup.string().required('Поле не может быть пустым'),
+  text: Yup.string().required('Поле не может быть пустым'),
+  tags: Yup.string().required('Поле не может быть пустым'),
+});
