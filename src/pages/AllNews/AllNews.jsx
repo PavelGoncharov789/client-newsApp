@@ -15,8 +15,9 @@ import Search from '../../components/Search/Search';
 import { getNewsAction } from '../../store/actions';
 
 import './styles.css';
+import useSearch from '../../hooks/useSearch';
 
-const QUANTITY_VARIANTS = [3, 5, 10];
+import { SEARCH_OPTIONS, SEARCH_VARIANTS, QUANTITY_VARIANTS } from '../../constants/constants';
 
 export default function AllNews() {
   const dispatch = useDispatch();
@@ -25,7 +26,12 @@ export default function AllNews() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [quantity, setQuanity] = useState(3);
-  const [resultArray, setResultArray] = useState();
+
+  const [value, setValue] = useState('');
+  const [searchId, setSearchId] = useState(SEARCH_VARIANTS.all);
+
+  // const resultArray = useSearch(newsArray, value, searchId, SEARCH_OPTIONS);
+  const resultArray = null;
 
   const pages = useMemo(() => {
     if (resultArray) {
@@ -57,21 +63,24 @@ export default function AllNews() {
     setQuanity(event.target.value);
   };
 
+  console.log(SEARCH_OPTIONS);
+
   return (
     <div>
       <Header pageName="News" />
-      <Search arrayForFilter={newsArray} setResultArray={setResultArray} />
+      <Search
+        value={value}
+        searchId={searchId}
+        setValue={setValue}
+        setSearchId={setSearchId}
+        searchVariants={SEARCH_OPTIONS}
+      />
       <div className="allNews">
         {isLoading && 'loading'}
         {!isLoading && arrayForRender.length > 0
-          ? resultArray
-            ? resultArray.map((news) => (
-              <NewsCard news={news} author={news.author} key={news.id} />
-            ))
-            : arrayForRender.map((news) => (
-              <NewsCard news={news} author={news.author} key={news.id} />
-            ))
-          : null}
+        && arrayForRender.map((news) => (
+          <NewsCard news={news} author={news.author} key={news.id} />
+        ))}
       </div>
       <div className="pagination">
         <Pagination
