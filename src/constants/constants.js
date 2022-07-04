@@ -8,14 +8,14 @@ export const SEARCH_VARIANTS = {
   tags: 'tags',
 };
 
-export const SEARCH_OPTIONS = [
-  {
+export const SEARCH_OPTIONS = {
+  all :{
     id: SEARCH_VARIANTS.all,
     label: 'Всем значениям',
     fields: ['text', 'title', 'author.login', 'tags'],
   },
-  { id: 'text', label: 'Тексту', fields: ['text'] },
-  { id: 'title', label: 'Заголовку', fields: ['title'] },
-  { id: 'author', label: 'Автору', fields: ['author.login'] },
-  { id: 'tags', label: 'Тегам', fields: ['tags'] },
-];
+  text: { id: 'text', label: 'Тексту', fields: ['text'] },
+  title: { id: 'title', label: 'Заголовку', fields: ['title'] },
+  author: { id: 'author', label: 'Автору', fields: ['author.login'] },
+  tags: { id: 'tags', label: 'Тегам', fields: ['tags'] },
+}

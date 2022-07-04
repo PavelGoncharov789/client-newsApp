@@ -30,8 +30,8 @@ export default function AllNews() {
   const [value, setValue] = useState('');
   const [searchId, setSearchId] = useState(SEARCH_VARIANTS.all);
 
-  // const resultArray = useSearch(newsArray, value, searchId, SEARCH_OPTIONS);
-  const resultArray = null;
+  const resultArray = useSearch(newsArray, value, searchId, SEARCH_OPTIONS);
+  console.log(resultArray,"resultArray");
 
   const pages = useMemo(() => {
     if (resultArray) {
@@ -62,8 +62,6 @@ export default function AllNews() {
   const handleQuantity = (event) => {
     setQuanity(event.target.value);
   };
-
-  console.log(SEARCH_OPTIONS);
 
   return (
     <div>

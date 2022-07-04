@@ -30,7 +30,7 @@ function Search({ value, searchId, setValue, setSearchId, searchVariants }) {
           label="Искать по"
           onChange={(e) => setSearchId(e.target.value)}
         >
-          {searchVariants.map((item) => (
+          {Object.values(searchVariants).map((item) => (
             <MenuItem value={item.id} key={item.id}>{item.label}</MenuItem>
           ))}
         </Select>
