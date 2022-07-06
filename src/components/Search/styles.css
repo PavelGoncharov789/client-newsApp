@@ -1,0 +1,26 @@
+.search-icon {
+  position: absolute;
+  left: 1062px;
+  top: 97px;
+  cursor: pointer;
+  z-index: 1;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.search-input {
+  width: 500px;
+  margin: 20px !important;
+}
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.select {
+  width: 140px;
+  height: 55px;
+  margin-top: 20px !important;
+}

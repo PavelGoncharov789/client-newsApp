@@ -13,7 +13,7 @@ const nameValidation = (label) => Yup.string()
 
 const loginValidation = Yup.string()
   .min(4, 'Длина должна быть не менее 4 символов')
-  .max(12, 'Длина должна быть не более 12 символов')
+  .max(22, 'Длина должна быть не более 22 символов')
   .required('Поле не может быть пустым');
 
 export const registrValidationSchema = Yup.object({

@@ -43,11 +43,9 @@ function UserPage() {
             {userData ? <UserInfo user={userData} /> : null}
             {authUserId === Number(id) ? <AddNewsModal /> : null}
           </div>
-          <div className="user-news">
-            {newsArray.length > 0 ? newsArray.map((news) => (
-              <NewsCard news={news} author={userData} key={news.id} />
-            )) : <h3 className="error">Пока нет добавленых новостей</h3>}
-          </div>
+          {newsArray.length > 0 ? newsArray.map((news) => (
+            <NewsCard news={news} author={userData} key={news.id} />
+          )) : <h3 className="error">Пока нет добавленых новостей</h3>}
         </div>
       )}
     </div>
