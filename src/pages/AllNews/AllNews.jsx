@@ -11,13 +11,17 @@ import {
 import NewsCard from '../../components/NewsCard/NewsCard';
 import Header from '../../components/Header/Header';
 import Search from '../../components/Search/Search';
+import useSearch from '../../hooks/useSearch';
 
 import { getNewsAction } from '../../store/actions';
 
 import './styles.css';
-import useSearch from '../../hooks/useSearch';
 
-import { SEARCH_OPTIONS, SEARCH_VARIANTS, QUANTITY_VARIANTS } from '../../constants/constants';
+import {
+  SEARCH_OPTIONS,
+  SEARCH_VARIANTS,
+  QUANTITY_VARIANTS
+} from '../../constants/constants';
 
 export default function AllNews() {
   const dispatch = useDispatch();
