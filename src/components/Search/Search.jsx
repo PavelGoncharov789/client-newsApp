@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
 
 import SearchIcon from '@mui/icons-material/Search';
 import {
@@ -21,10 +22,8 @@ function Search({
   const [value, setValue] = useState('');
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSearchText(value);
-    }, 800);
-    return () => clearTimeout(timer);
+    const searchTimer = debounce(setSearchText, 800);
+    searchTimer(value);
   }, [value]);
 
   return (
