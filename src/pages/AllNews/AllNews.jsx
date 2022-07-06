@@ -41,7 +41,7 @@ export default function AllNews() {
   const arrayForRender = useMemo(() => {
     const lastIndex = currentPage * quantity;
     const firstIndex = lastIndex - quantity;
-    if (foundNews) {
+    if (foundNews && searchText.length) {
       return foundNews.slice(firstIndex, lastIndex);
     }
     return newsArray.slice(firstIndex, lastIndex);
@@ -65,7 +65,6 @@ export default function AllNews() {
     <div>
       <Header pageName="News" />
       <Search
-        searchText={searchText}
         searchId={searchId}
         setSearchText={setSearchText}
         setSearchId={setSearchId}

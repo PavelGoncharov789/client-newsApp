@@ -1,4 +1,4 @@
-import { get, debounce } from 'lodash';
+import { get } from 'lodash';
 import { useState, useEffect } from 'react';
 
 export default function useSearch(
@@ -26,8 +26,7 @@ export default function useSearch(
     if (searchField.length < 1) {
       setSearchResult(null);
     } else {
-      const searchDelay = debounce(handleSearch, 1500);
-      searchDelay(searchField);
+      handleSearch(searchField);
     }
   }, [searchField, searchId]);
 

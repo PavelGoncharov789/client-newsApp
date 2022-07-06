@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -13,19 +13,27 @@ import {
 import './styles.css';
 
 function Search({
-  searchText,
   searchId,
   setSearchText,
   setSearchId,
   searchVariants,
 }) {
+  const [value, setValue] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSearchText(value);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [value]);
+
   return (
     <div className="search">
       <SearchIcon className="search-icon" />
       <TextField
         type="text"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
         className="search-input"
       />
       <FormControl className="select">
@@ -45,7 +53,6 @@ function Search({
 }
 
 Search.propTypes = {
-  searchText: PropTypes.string.isRequired,
   searchId: PropTypes.string.isRequired,
   setSearchText: PropTypes.func.isRequired,
   setSearchId: PropTypes.func.isRequired,
