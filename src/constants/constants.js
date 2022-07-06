@@ -9,7 +9,7 @@ export const SEARCH_VARIANTS = {
 };
 
 export const SEARCH_OPTIONS = {
-  all :{
+  all: {
     id: SEARCH_VARIANTS.all,
     label: 'Всем значениям',
     fields: ['text', 'title', 'author.login', 'tags'],
@@ -18,4 +18,4 @@ export const SEARCH_OPTIONS = {
   title: { id: 'title', label: 'Заголовку', fields: ['title'] },
   author: { id: 'author', label: 'Автору', fields: ['author.login'] },
   tags: { id: 'tags', label: 'Тегам', fields: ['tags'] },
-}
+};

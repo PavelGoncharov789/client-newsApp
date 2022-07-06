@@ -26,27 +26,26 @@ export default function AllNews() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [quantity, setQuanity] = useState(3);
-
-  const [value, setValue] = useState('');
+  const [searchText, setSearchText] = useState('');
   const [searchId, setSearchId] = useState(SEARCH_VARIANTS.all);
 
-  const resultArray = useSearch(newsArray, value, searchId, SEARCH_OPTIONS);
+  const foundNews = useSearch(newsArray, searchText, searchId, SEARCH_OPTIONS);
 
   const pages = useMemo(() => {
-    if (resultArray) {
-      return Math.ceil(resultArray.length / quantity);
+    if (foundNews) {
+      return Math.ceil(foundNews.length / quantity);
     }
     return Math.ceil(newsArray.length / quantity);
-  }, [quantity, newsArray.length, resultArray]);
+  }, [quantity, newsArray.length, foundNews]);
 
   const arrayForRender = useMemo(() => {
     const lastIndex = currentPage * quantity;
     const firstIndex = lastIndex - quantity;
-    if (resultArray) {
-      return resultArray.slice(firstIndex, lastIndex);
+    if (foundNews) {
+      return foundNews.slice(firstIndex, lastIndex);
     }
     return newsArray.slice(firstIndex, lastIndex);
-  }, [pages, currentPage, newsArray, resultArray]);
+  }, [pages, currentPage, newsArray, foundNews]);
 
   useEffect(() => {
     if (currentPage > pages) {
@@ -66,9 +65,9 @@ export default function AllNews() {
     <div>
       <Header pageName="News" />
       <Search
-        value={value}
+        searchText={searchText}
         searchId={searchId}
-        setValue={setValue}
+        setSearchText={setSearchText}
         setSearchId={setSearchId}
         searchVariants={SEARCH_OPTIONS}
       />

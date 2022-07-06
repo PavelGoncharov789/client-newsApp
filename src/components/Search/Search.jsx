@@ -12,15 +12,20 @@ import {
 
 import './styles.css';
 
-function Search({ value, searchId, setValue, setSearchId, searchVariants }) {
-
+function Search({
+  searchText,
+  searchId,
+  setSearchText,
+  setSearchId,
+  searchVariants,
+}) {
   return (
     <div className="search">
       <SearchIcon className="search-icon" />
       <TextField
         type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
         className="search-input"
       />
       <FormControl className="select">
@@ -40,9 +45,11 @@ function Search({ value, searchId, setValue, setSearchId, searchVariants }) {
 }
 
 Search.propTypes = {
-  setValue: PropTypes.func.isRequired,
+  searchText: PropTypes.string.isRequired,
+  searchId: PropTypes.string.isRequired,
+  setSearchText: PropTypes.func.isRequired,
   setSearchId: PropTypes.func.isRequired,
+  searchVariants: PropTypes.shape({}).isRequired,
 };
-
 
 export default Search;
