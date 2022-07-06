@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header/Header';
 import NewsCard from '../../components/NewsCard/NewsCard';
 import UserInfo from '../../components/UserInfo/UserInfo';
-import Search from '../../components/Search/Search';
 import AddNewsModal from '../../components/AddNewsModal/AddNewsModal';
 
 import { getUserDataAction } from '../../store/actions/user-action';
@@ -20,7 +19,6 @@ function UserPage() {
   const error = useSelector((state) => state.userReducer.error);
   const authUserId = useSelector((state) => state.authReducer.user?.id);
   const [newsArray, setNews] = useState([]);
-  const [resultArray, setResultArray] = useState();
 
   useEffect(() => {
     dispatch(getUserDataAction(id));
@@ -37,10 +35,6 @@ function UserPage() {
   return (
     <div>
       <Header pageName="user-news" />
-      <Search
-        arrayForFilter={userData?.news}
-        setResultArray={setResultArray}
-      />
       {error ? (
         <h3 className="error">Что-то пошло не так, попробуйте позже</h3>
       ) : (
@@ -49,17 +43,9 @@ function UserPage() {
             {userData ? <UserInfo user={userData} /> : null}
             {authUserId === Number(id) ? <AddNewsModal /> : null}
           </div>
-          {resultArray 
-          ? <div className="user-news">
-              {resultArray.length > 0 ? resultArray.map((news) => (
-                <NewsCard news={news} author={userData} key={news.id} />
-              )) : <h3 className="error">Нет результата </h3>}
-            </div>
-          : <div className="user-news">
-              {newsArray.length > 0 ? newsArray.map((news) => (
-                <NewsCard news={news} author={userData} key={news.id} />
-              )) : <h3 className="error">Пока нет добавленых новостей</h3>}
-            </div>}
+          {newsArray.length > 0 ? newsArray.map((news) => (
+            <NewsCard news={news} author={userData} key={news.id} />
+          )) : <h3 className="error">Пока нет добавленых новостей</h3>}
         </div>
       )}
     </div>

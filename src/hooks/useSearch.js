@@ -1,33 +1,31 @@
 import { useState, useEffect } from 'react';
+
 const _ = require('lodash');
 
 export default function useSearch(
   arrayToSearch,
   searchField,
   searchId,
-  searchVariant
+  searchVariant,
 ) {
-  const [searchReult, setSearchReult] = useState();
-  
+  const [searchResult, setSearchResult] = useState();
+
   function handleSearch() {
     const result = arrayToSearch.filter((element) =>
       searchVariant[searchId].fields.some((field) =>
-        Object.values(element[field]).includes(searchField)
-      )
-    );
-    
-    setSearchReult(result);
+        _.get(element, field).includes(searchField)));
+    setSearchResult(result);
   }
 
   useEffect(() => {
     if (searchField.length < 1) {
-      setSearchReult(null);
+      setSearchResult(null);
     } else {
       setTimeout(() => {
-      handleSearch(searchField);
+        handleSearch(searchField);
       }, 2000);
     }
-  }, [searchField]);
+  }, [searchField, searchId]);
 
-  return searchReult;
+  return searchResult;
 }

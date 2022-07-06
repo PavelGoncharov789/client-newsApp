@@ -31,7 +31,6 @@ export default function AllNews() {
   const [searchId, setSearchId] = useState(SEARCH_VARIANTS.all);
 
   const resultArray = useSearch(newsArray, value, searchId, SEARCH_OPTIONS);
-  console.log(resultArray,"resultArray");
 
   const pages = useMemo(() => {
     if (resultArray) {
