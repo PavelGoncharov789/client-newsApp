@@ -18,3 +18,8 @@
 .content {
   display: flex;
 }
+
+.news-content{
+  display: flex;
+  flex-direction: column;
+}

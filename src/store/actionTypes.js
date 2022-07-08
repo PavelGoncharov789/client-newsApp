@@ -17,3 +17,6 @@ export const GET_USER_DATA_FAIL = 'GET_USER_DATA_FAIL';
 export const ADD_NEWS = 'ADD_NEWS';
 export const ADD_NEWS_SUCCESS = 'ADD_NEWS_SUCCESS';
 export const ADD_NEWS_FAIL = 'ADD_NEWS_FAIL';
+export const ADD_AVATAR = 'ADD_NEWS';
+export const ADD_AVATAR_SUCCESS = 'ADD_NEWS_SUCCESS';
+export const ADD_AVATAR_FAIL = 'ADD_NEWS_FAIL';

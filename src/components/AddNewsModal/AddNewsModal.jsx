@@ -11,7 +11,7 @@ import {
   TextareaAutosize,
 } from '@mui/material';
 
-import AddPictures from '../FileUploader/FileUploader';
+import FileUploader from '../FileUploader/FileUploader';
 import { addNewsAction } from '../../store/actions';
 import { addNewsSchema } from '../../utils/validationUtils';
 
@@ -71,7 +71,7 @@ const AddNewsModal = React.memo(function AddNewsModal() {
         <DialogContent>
           <form onSubmit={formik.handleSubmit}>
             <div className="dialog-content">
-              <AddPictures setFile={setImage} />
+              <FileUploader setFile={setImage} />
               {addNewsFormFields.map(({ label, name }) =>
                 name === 'text' ? (
                   <TextareaAutosize

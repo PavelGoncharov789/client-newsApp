@@ -13,7 +13,6 @@ import {
   addNewsFailAction,
   addNewsSuccessAction,
   getUserDataAction,
-  getNewsAction,
 } from '../actions';
 
 function* getNewsWorker() {

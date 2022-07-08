@@ -29,6 +29,27 @@ export default function userReducer(state = initialState, action = {}) {
         userData: null,
         error: action.payload,
       };
+      case actionTypes.ADD_AVATAR:
+      return {
+        ...state,
+        loading: true,
+        userData: null,
+        error: null,
+      };
+    case actionTypes.ADD_AVATAR_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        userData: action.payload,
+        error: null,
+      };
+    case actionTypes.ADD_AVATAR_FAIL:
+      return {
+        ...state,
+        loading: false,
+        userData: null,
+        error: action.payload,
+      };
     default: return state;
   }
 }
