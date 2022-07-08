@@ -26,15 +26,16 @@ function* getUserData(action) {
 }
 
 function* addUserAvatar(action) {
-  const { image } = action.payload;
 
   const formData = new FormData();
-  formData.append('file', image);
+  formData.append('file', action.payload);
 
   try {
+    console.log(formData,"formData");
     const data = yield call(adapter, {
       method: 'post',
-      url: '/addAvatar',
+      url: 'users/avatar',
+      data: formData,
     });
     console.log(data.status, "data.status,");
   } catch {
