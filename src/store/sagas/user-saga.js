@@ -7,7 +7,7 @@ import {
 
 import adapter from '../../api/adapter';
 import * as actionTypes from '../actionTypes';
-import { getUserDataSuccessAction, getUserDataFailAction } from '../actions/user-action';
+import { getUserDataSuccessAction, getUserDataFailAction, addAvatarFailAction } from '../actions/user-action';
 
 function* getUserData(action) {
   try {
@@ -31,16 +31,15 @@ function* addUserAvatar(action) {
   formData.append('file', action.payload);
 
   try {
-    console.log(formData,"formData");
     const data = yield call(adapter, {
       method: 'post',
-      url: 'users/avatar',
+      url: 'users/changeAvatar',
       data: formData,
     });
-    console.log(data.status, "data.status,");
-  } catch {
-    yield put(addNewsFailAction(e.message));
-  } 
+    console.log(data);
+  } catch (error) {
+    yield put(addAvatarFailAction(error.message));
+  }
 }
 
 export default function* userWatcher() {
