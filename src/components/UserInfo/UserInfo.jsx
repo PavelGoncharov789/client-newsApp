@@ -7,7 +7,6 @@ import {
   CardContent,
   Typography,
   Button,
-  CardActions,
 } from '@mui/material';
 
 import FileUploader from '../FileUploader/FileUploader';
@@ -27,14 +26,13 @@ function UserInfo({
   const [image, setImage] = useState('');
 
   const handleSend = () => {
-    dispatch(addAvatarAction( image ));
+    dispatch(addAvatarAction(image));
   }
 
-  
   return (
-    <Card sx={{ minWidth: 275, maxWidth: 300, height: 300 }} className="user">
+    <Card sx={{ minWidth: 275, maxWidth: 300, height: 370 }} className="user">
       <FileUploader setFile={setImage} />
-      <Button onClick={handleSend}>Добавить аватар</Button>
+      <Button onClick={handleSend} style={{ margin: '0 auto', display: 'flex' }}>Добавить аватар</Button>
       <CardContent>
         <Typography variant="h5" component="div" className="text">
           {login}
@@ -49,9 +47,6 @@ function UserInfo({
           {email}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Добаввить аватар</Button>
-      </CardActions>
     </Card>
   );
 }

@@ -31,7 +31,6 @@ function UserPage() {
   if (isLoading) {
     return <div>loading...</div>;
   }
-
   return (
     <div>
       <Header pageName="user-news" />
