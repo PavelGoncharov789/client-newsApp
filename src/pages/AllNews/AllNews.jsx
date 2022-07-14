@@ -20,7 +20,7 @@ import './styles.css';
 import {
   SEARCH_OPTIONS,
   SEARCH_VARIANTS,
-  QUANTITY_VARIANTS
+  QUANTITY_VARIANTS,
 } from '../../constants/constants';
 
 export default function AllNews() {

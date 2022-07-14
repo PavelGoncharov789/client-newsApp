@@ -39,7 +39,6 @@ function* addNewsWorker(action) {
   for (const key in values) {
     formData.append(key, values[key]);
   }
-
   try {
     const data = yield call(adapter, {
       method: 'post',

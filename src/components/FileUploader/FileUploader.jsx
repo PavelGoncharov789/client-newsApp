@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function FileUploader({ setFile }) {
-
   const onSelectImageHandler = (event) => {
     if (event.target.files[0]) {
       setFile(event.target.files[0]);
@@ -14,7 +13,6 @@ function FileUploader({ setFile }) {
       <input
         type="file"
         accept=".jpg, .jpeg, .png"
-        id="inputGroupFile01"
         onChange={onSelectImageHandler}
       />
     </div>

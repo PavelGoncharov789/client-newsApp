@@ -7,7 +7,13 @@ import {
 
 import adapter from '../../api/adapter';
 import * as actionTypes from '../actionTypes';
-import { getUserDataSuccessAction, getUserDataFailAction, addAvatarFailAction } from '../actions/user-action';
+import {
+  getUserDataSuccessAction,
+  getUserDataFailAction,
+  addAvatarFailAction,
+  addAvatarSuccessAction,
+  getUserDataAction,
+} from '../actions/user-action';
 
 function* getUserData(action) {
   try {
@@ -26,17 +32,23 @@ function* getUserData(action) {
 }
 
 function* addUserAvatar(action) {
+  const { images, id } = action.payload;
 
   const formData = new FormData();
-  formData.append('file', action.payload);
+  formData.append('file', images);
 
   try {
     const data = yield call(adapter, {
       method: 'post',
-      url: 'users/changeAvatar',
+      url: 'users/changeavatar',
       data: formData,
     });
-    console.log(data);
+    if (data.status === 200) {
+      yield put(getUserDataAction(id));
+      yield put(addAvatarSuccessAction());
+    } else {
+      yield cancel('Ошибка! Попробуйте установить аватар позже...');
+    }
   } catch (error) {
     yield put(addAvatarFailAction(error.message));
   }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
@@ -7,7 +7,7 @@ import {
   CardContent,
   Typography,
   Button,
-  CardActions,
+  CardMedia,
 } from '@mui/material';
 
 import FileUploader from '../FileUploader/FileUploader';
@@ -18,23 +18,32 @@ import './style.css';
 
 function UserInfo({
   user: {
-    firstName, lastName, login, email,
+    id, avatar, firstName, lastName, login, email,
   },
-  
 })
 {
   const dispatch = useDispatch();
-  const [image, setImage] = useState('');
+  const [images, setImages] = useState('');
 
   const handleSend = () => {
-    dispatch(addAvatarAction( image ));
-  }
+    if (images) dispatch(addAvatarAction({ images, id }));
+  };
 
-  
   return (
-    <Card sx={{ minWidth: 275, maxWidth: 300, height: 300 }} className="user">
-      <FileUploader setFile={setImage} />
-      <Button onClick={handleSend}>Добавить аватар</Button>
+    <Card sx={{ minWidth: 275, maxWidth: 300, height: 370 }} className="user">
+      <CardMedia
+        component="img"
+        height="194"
+        image={avatar ? `${process.env.REACT_APP_BASE_URL}/${avatar}` : 'https://site1446.airsmb.ru/data/thumbs/659f3b6233c8c23032361057fafea444.jpg'}
+        alt="avatar"
+      />
+      <FileUploader setFile={setImages} avatar={avatar} />
+      <Button
+        onClick={handleSend}
+        style={{ margin: '0 auto', display: 'flex' }}
+      >
+        {avatar ? 'Сменить аватар' : 'Добавить аватар'}
+      </Button>
       <CardContent>
         <Typography variant="h5" component="div" className="text">
           {login}
@@ -49,9 +58,6 @@ function UserInfo({
           {email}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Добаввить аватар</Button>
-      </CardActions>
     </Card>
   );
 }
@@ -62,6 +68,8 @@ UserInfo.propTypes = {
     lastName: PropTypes.string,
     login: PropTypes.string,
     email: PropTypes.string,
+    id: PropTypes.number,
+    avatar: PropTypes.string,
   }).isRequired,
 };
 

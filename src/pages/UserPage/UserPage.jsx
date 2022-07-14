@@ -31,7 +31,6 @@ function UserPage() {
   if (isLoading) {
     return <div>loading...</div>;
   }
-
   return (
     <div>
       <Header pageName="user-news" />
@@ -43,10 +42,10 @@ function UserPage() {
             {userData ? <UserInfo user={userData} /> : null}
             {authUserId === Number(id) ? <AddNewsModal /> : null}
           </div>
-          <div className='news-content'>
-          {newsArray.length > 0 ? newsArray.map((news) => (
-            <NewsCard news={news} author={userData} key={news.id} />
-          )) : <h3 className="error">Пока нет добавленых новостей</h3>}
+          <div className="news-content">
+            {newsArray.length > 0 ? newsArray.map((news) => (
+              <NewsCard news={news} author={userData} key={news.id} />
+            )) : <h3 className="error">Пока нет добавленых новостей</h3>}
           </div>
         </div>
       )}
